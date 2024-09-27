@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Level 1 Quiz: English, Math, Science</title>
+    <link rel="stylesheet" href="style3.css">
+</head>
+<body>
+    <div class="quiz-container">
+        <h1>Level 3 Quiz</h1>
+
+        <!-- English Section -->
+        <h2>English (Parts of Speech and Comprehension)</h2>
+        <form id="quizForm">
+            <!-- Question 1: Parts of Speech -->
+            <div class="question">
+                <p>1. What part of speech is the word "run" in the sentence: "I like to run"?</p>
+                <label>
+                    <input type="radio" name="q1" value="A">
+                    Noun
+                </label><br>
+                <label>
+                    <input type="radio" name="q1" value="B">
+                    Verb
+                </label><br>
+                <label>
+                    <input type="radio" name="q1" value="C">
+                    Adjective
+                </label>
+            </div>
+
+            <!-- Question 2: Comprehension -->
+            <div class="question">
+                <p>2. Read the sentence: "The cat is sleeping on the sofa." Where is the cat?</p>
+                <label>
+                    <input type="radio" name="q2" value="A">
+                    On the chair
+                </label><br>
+                <label>
+                    <input type="radio" name="q2" value="B">
+                    On the sofa
+                </label><br>
+                <label>
+                    <input type="radio" name="q2" value="C">
+                    Under the table
+                </label>
+            </div>
+
+            <!-- Math Section -->
+            <h2>Math (Multiplication and Division)</h2>
+
+            <!-- Question 3: Multiplication -->
+            <div class="question">
+                <p>3. What is 6 x 4?</p>
+                <label>
+                    <input type="radio" name="q3" value="A">
+                    20
+                </label><br>
+                <label>
+                    <input type="radio" name="q3" value="B">
+                    24
+                </label><br>
+                <label>
+                    <input type="radio" name="q3" value="C">
+                    28
+                </label>
+            </div>
+
+            <!-- Question 4: Division -->
+            <div class="question">
+                <p>4. What is 12 ÷ 3?</p>
+                <label>
+                    <input type="radio" name="q4" value="A">
+                    4
+                </label><br>
+                <label>
+                    <input type="radio" name="q4" value="B">
+                    3
+                </label><br>
+                <label>
+                    <input type="radio" name="q4" value="C">
+                    5
+                </label>
+            </div>
+
+            <!-- Science Section -->
+            <h2>Science (Our Body)</h2>
+
+            <!-- Question 5: Parts of the Body -->
+            <div class="question">
+                <p>5. Which of these is used for seeing?</p>
+                <label>
+                    <input type="radio" name="q5" value="A">
+                    Hands
+                </label><br>
+                <label>
+                    <input type="radio" name="q5" value="B">
+                    Eyes
+                </label><br>
+                <label>
+                    <input type="radio" name="q5" value="C">
+                    Nose
+                </label>
+            </div>
+
+            <!-- Question 6: Function of the Heart -->
+            <div class="question">
+                <p>6. What does the heart do in our body?</p>
+                <label>
+                    <input type="radio" name="q6" value="A">
+                    Helps us breathe
+                </label><br>
+                <label>
+                    <input type="radio" name="q6" value="B">
+                    Pumps blood
+                </label><br>
+                <label>
+                    <input type="radio" name="q6" value="C">
+                    Helps us think
+                </label>
+            </div>
+
+            <!-- Submit Button -->
+            <button type="button" onclick="submitQuiz()">Submit</button>
+
+            <div id="result"></div>
+        </form>
+    </div>
+
+    <script src="script3.js"></script>
+</body>
+</html>

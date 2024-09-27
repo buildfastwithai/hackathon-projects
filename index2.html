@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Level 1 Quiz: English, Math, Science</title>
+    <link rel="stylesheet" href="style2.css">
+</head>
+<body>
+    <div class="quiz-container">
+        <h1>Level 2 Quiz</h1>
+
+        <!-- English Section -->
+        <h2>English (Phonics and Vocabulary)</h2>
+        <form id="quizForm">
+            <!-- Question 1: Phonic Sound -->
+            <div class="question">
+                <p>1. Which word starts with the "buh" sound?</p>
+                <label>
+                    <input type="radio" name="q1" value="A">
+                    Cat
+                </label><br>
+                <label>
+                    <input type="radio" name="q1" value="B">
+                    Ball
+                </label><br>
+                <label>
+                    <input type="radio" name="q1" value="C">
+                    Dog
+                </label>
+            </div>
+
+            <!-- Question 2: Vocabulary -->
+            <div class="question">
+                <p>2. Which word means something you eat?</p>
+                <label>
+                    <input type="radio" name="q2" value="A">
+                    Run
+                </label><br>
+                <label>
+                    <input type="radio" name="q2" value="B">
+                    Apple
+                </label><br>
+                <label>
+                    <input type="radio" name="q2" value="C">
+                    Book
+                </label>
+            </div>
+
+            <!-- Math Section -->
+            <h2>Math (3-Digit Arithmetic)</h2>
+
+            <!-- Question 3: Addition -->
+            <div class="question">
+                <p>3. What is 245 + 132?</p>
+                <label>
+                    <input type="radio" name="q3" value="A">
+                    377
+                </label><br>
+                <label>
+                    <input type="radio" name="q3" value="B">
+                    387
+                </label><br>
+                <label>
+                    <input type="radio" name="q3" value="C">
+                    357
+                </label>
+            </div>
+
+            <!-- Question 4: Subtraction -->
+            <div class="question">
+                <p>4. What is 500 - 275?</p>
+                <label>
+                    <input type="radio" name="q4" value="A">
+                    225
+                </label><br>
+                <label>
+                    <input type="radio" name="q4" value="B">
+                    235
+                </label><br>
+                <label>
+                    <input type="radio" name="q4" value="C">
+                    215
+                </label>
+            </div>
+
+            <!-- Science Section -->
+            <h2>Science (Our Environment)</h2>
+
+            <!-- Question 5: Environment -->
+            <div class="question">
+                <p>5. Which of these helps plants grow?</p>
+                <label>
+                    <input type="radio" name="q5" value="A">
+                    Water
+                </label><br>
+                <label>
+                    <input type="radio" name="q5" value="B">
+                    Plastic
+                </label><br>
+                <label>
+                    <input type="radio" name="q5" value="C">
+                    Rocks
+                </label>
+            </div>
+
+            <!-- Question 6: Air -->
+            <div class="question">
+                <p>6. What do humans need to breathe?</p>
+                <label>
+                    <input type="radio" name="q6" value="A">
+                    Water
+                </label><br>
+                <label>
+                    <input type="radio" name="q6" value="B">
+                    Oxygen
+                </label><br>
+                <label>
+                    <input type="radio" name="q6" value="C">
+                    Sunlight
+                </label>
+            </div>
+
+            <!-- Submit Button -->
+            <button type="button" onclick="submitQuiz()">Submit</button>
+
+            <div id="result"></div>
+        </form>
+    </div>
+
+    <script src="script2.js"></script>
+</body>
+</html>
