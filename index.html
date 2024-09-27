@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vidyamitra - Your Learning Companion</title>
+    <link rel="stylesheet" href="style.css" />
+     <style>
+      /* Chatbot styles */
+      .chat-container {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        width: 300px;
+        border: 1px solid #ccc;
+        border-radius: 10px;
+        display: flex;
+        flex-direction: column;
+        background-color: white;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+      }
+      .chat-box {
+        flex: 1;
+        padding: 10px;
+        overflow-y: auto;
+        max-height: 400px;
+      }
+      .message {
+        margin: 5px 0;
+        padding: 10px;
+        border-radius: 5px;
+        max-width: 80%;
+      }
+      .bot {
+        background-color: #e0e0e0;
+        align-self: flex-start;
+      }
+      .user {
+        background-color: #04172c;
+        color: white;
+        align-self: flex-end;
+      }
+      input[type="text"] {
+        border: none;
+        padding: 10px;
+        flex-shrink: 0;
+      }
+      button {
+        border: none;
+        padding: 10px;
+        background-color: #02162b;
+        color: white;
+        cursor: pointer;
+        flex-shrink: 0;
+      }
+      button:hover {
+        background-color: #5c5d5e;
+      }
+    </style>
+  </head>
+  <body>
+    <header class="navbar">
+      <div class="logo">Vidyamitra</div>
+      <ul class="nav-links">
+        <li><a href="#">Home</a></li>
+        <li><a href="#">Courses</a></li>
+        <li><a href="#">About</a></li>
+        <li><a href="#">Contact</a></li>
+      </ul>
+    </header>
+
+    <section class="banner">
+      <h1>Welcome to Vidyamitra</h1>
+      <p>Empowering learners at every level</p>
+      <button>Get Started</button>
+    </section>
+
+    <section class="levels">
+      <h2>Choose Your Learning Level</h2>
+      <div class="level-grid">
+        <div class="flip-card beginner" >
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <h3>Level 1</h3>
+              <p>Start your journey here.</p>
+            </div>
+            <div class="flip-card-back" onclick="location.href='index1.html'">
+              <ul>
+                <li>Engligh-Simple words and Sentence formation</li>
+                <li>Science-Plants & Animals Identification</li>
+                <li>Maths-Numbers & Counting</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="flip-card intermediate" >
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <h3>Level 2</h3>
+              <p>Advance your knowledge.</p>
+            </div>
+            <div class="flip-card-back" onclick="location.href='index2.html'">
+              <ul>
+                <li>English-Phonics & Vocabulary</li>
+                <li>Science-Our Environment</li>
+                <li>Maths-Basic Operations(Addition, Subtraction)</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="flip-card advanced" >
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <h3>Level 3</h3>
+              <p>Master your skills.</p>
+            </div>
+            <div class="flip-card-back" onclick="location.href='index3.html'">
+              <ul>
+                <li>English-Parts of Speech & Comprehension</li>
+                <li>Science-Our Body</li>
+                <li>Maths-Basic Operations(Multiplication, Division)</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <p>Vidyamitra &copy; 2024 - All Rights Reserved</p>
+    </footer>
+    <!-- Chatbot HTML -->
+    <div class="chat-container">
+      <div class="chat-box" id="chat-box">
+        <div class="message bot">Hello! How can I assist you today?</div>
+      </div>
+      <input type="text" id="user-input" placeholder="Type a message..." />
+      <button id="send-button">Send</button>
+    </div>
+
+    <script>
+      document
+        .getElementById("send-button")
+        .addEventListener("click", sendMessage);
+
+      function sendMessage() {
+        const input = document.getElementById("user-input");
+        const userMessage = input.value.trim();
+
+        if (userMessage) {
+          appendMessage(userMessage, "user");
+          input.value = "";
+
+          // Simulate bot response
+          setTimeout(() => {
+            const botResponse = getBotResponse(userMessage);
+            appendMessage(botResponse, "bot");
+          }, 1000);
+        }
+      }
+
+      function appendMessage(message, sender) {
+        const chatBox = document.getElementById("chat-box");
+        const messageDiv = document.createElement("div");
+        messageDiv.classList.add("message", sender);
+        messageDiv.innerText = message;
+        chatBox.appendChild(messageDiv);
+        chatBox.scrollTop = chatBox.scrollHeight; // Scroll to the bottom
+      }
+
+      function getBotResponse(userMessage) {
+        // Simple responses for demonstration
+        const responses = {
+          hi: "Hello! How can I help you?",
+          "how are you?": "I'm just a bot, but thanks for asking!",
+          "what is vidyamitra?":
+            "Vidyamitra is a platform for educational resources.",
+          "what do you do?":
+            "This is a platform where we provide asisstance to the students of class 1, 2, 3 to improve on thier studies",
+          bye: "Goodbye! Have a great day!",
+        };
+
+        return (
+          responses[userMessage.toLowerCase()] ||
+          "I'm not sure how to respond to that."
+        );
+      }
+    </script>
+
+    <script src="script.js"></script>
+  </body>
+</html>

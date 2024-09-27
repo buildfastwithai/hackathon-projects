@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Level 1 Quiz</title>
+    <link rel="stylesheet" href="style1.css">
+</head>
+<body>
+    <div class="quiz-container">
+        <h1>Level 1 Quiz</h1>
+
+        <!-- Math Section -->
+        <h2>Math</h2>
+        <form id="quizForm">
+            <!-- Question 1: Simple Addition -->
+            <div class="question">
+                <p>1. What is 3 + 2?</p>
+                <label>
+                    <input type="radio" name="q1" value="A">
+                    4
+                </label><br>
+                <label>
+                    <input type="radio" name="q1" value="B">
+                    5
+                </label><br>
+                <label>
+                    <input type="radio" name="q1" value="C">
+                    6
+                </label>
+            </div>
+
+            <!-- Question 2: Subtraction -->
+            <div class="question">
+                <p>2. What is 5 - 3?</p>
+                <label>
+                    <input type="radio" name="q2" value="A">
+                    1
+                </label><br>
+                <label>
+                    <input type="radio" name="q2" value="B">
+                    2
+                </label><br>
+                <label>
+                    <input type="radio" name="q2" value="C">
+                    3
+                </label>
+            </div>
+
+            <!-- English Section -->
+            <h2>English</h2>
+
+            <!-- Question 3: Word Identification -->
+            <div class="question">
+                <p>3. Which word is the name of a fruit?</p>
+                <label>
+                    <input type="radio" name="q3" value="A">
+                    Cat
+                </label><br>
+                <label>
+                    <input type="radio" name="q3" value="B">
+                    Apple
+                </label><br>
+                <label>
+                    <input type="radio" name="q3" value="C">
+                    Dog
+                </label>
+            </div>
+
+            <!-- Question 4: Sentence Completion -->
+            <div class="question">
+                <p>4. Complete the sentence: The sky is _____.</p>
+                <label>
+                    <input type="radio" name="q4" value="A">
+                    big
+                </label><br>
+                <label>
+                    <input type="radio" name="q4" value="B">
+                    blue
+                </label><br>
+                <label>
+                    <input type="radio" name="q4" value="C">
+                    red
+                </label>
+            </div>
+
+            <!-- Science Section -->
+            <h2>Science</h2>
+
+            <!-- Question 5: Identify the Plant -->
+            <div class="question">
+                <p>5. Which one is a plant?</p>
+                <label>
+                    <input type="radio" name="q5" value="A">
+                    Cat
+                </label><br>
+                <label>
+                    <input type="radio" name="q5" value="B">
+                    Dog
+                </label><br>
+                <label>
+                    <input type="radio" name="q5" value="C">
+                    Tree
+                </label>
+            </div>
+
+            <!-- Question 6: Identify the Animal -->
+            <div class="question">
+                <p>6. Which one is an animal?</p>
+                <label>
+                    <input type="radio" name="q6" value="A">
+                    Rose
+                </label><br>
+                <label>
+                    <input type="radio" name="q6" value="B">
+                    Lion
+                </label><br>
+                <label>
+                    <input type="radio" name="q6" value="C">
+                    Sunflower
+                </label>
+            </div>
+
+            <!-- Submit Button -->
+            <button type="button" onclick="submitQuiz()">Submit</button>
+
+            <div id="result"></div>
+        </form>
+    </div>
+
+    <script src="script1.js"></script>
+</body>
+</html>
