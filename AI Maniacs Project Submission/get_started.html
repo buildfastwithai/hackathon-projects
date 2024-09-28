@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Codify Dashboard</title>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        body {
+            background: radial-gradient(circle, #2e2e3e, #1f1f2e); /* Darker theme for the dashboard */
+            color: #fff;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: rgba(255, 255, 255, 0.1);
+            padding: 15px 30px;
+            backdrop-filter: blur(10px);
+        }
+
+        nav .logo img {
+            width: 140px; /* Logo width */
+            height: 50px;
+        }
+
+        nav .menu {
+            display: flex;
+            gap: 30px;
+        }
+
+        nav .menu a {
+            text-decoration: none;
+            font-size: 1.5rem;
+            color: #fff;
+            transition: color 0.3s ease;
+        }
+
+        nav .menu a:hover {
+            color: #ffdd57;
+        }
+
+        .dashboard-heading {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin: 20px 0;
+            color: #ffdd57;
+            padding-left: 30px; /* Align with the navigation bar */
+        }
+
+        .dashboard {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+            max-width: 1000px;
+            width: 90%;
+            margin: 30px auto;
+        }
+
+        .dashboard-btn:hover {
+            transform: scale(1.05);
+            background-color: rgba(255, 221, 87, 0.1); /* Slight color change on hover */
+        }
+        .dashboard-btn {
+    width: 220px; /* Same width as others */
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border-radius: 12px;
+    border: none;
+    font-size: 1.25rem;
+    font-weight: 500;
+    color: #ffdd57;
+    cursor: pointer;
+    transition: transform 0.3s, background-color 0.3s;
+    text-align: center; /* Center-align text */
+    display: flex; /* Flex display for better control */
+    justify-content: center; /* Center both text and icon */
+    align-items: center; /* Vertical alignment */
+}
+
+.dashboard-btn i {
+    font-size: 1.5rem; /* Icon size */
+    margin-right: 10px; /* Space between icon and text */
+    color: #ff6347;
+    vertical-align: middle; /* Align icon vertically */
+}
+
+.dashboard-btn span {
+    color: #fff;
+    vertical-align: middle;
+}
+
+        .footer {
+            position:relative; /* Changed to relative for better control */
+            bottom: 0;
+            margin-top: 20px;
+            color: #ffdd57;
+            font-size: 0.9rem;
+            opacity: 0.8;
+            text-align: center;
+        }
+
+        /* Button icon styles */
+        .fa-book, .fa-code, .fa-robot, .fa-tasks {
+            color: #ff6347;
+        }
+
+        /* Subtle animations */
+        .dashboard-btn:hover span, .dashboard-btn:hover i {
+            color: #ffdd57;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation Bar -->
+    <nav>
+        <div class="logo">
+            <img src="Blue_and_Pink_Minimalist_Video_Game_Developer_Studio_Logo__1_-removebg-preview.png" alt="Codify Logo">
+        </div>
+        <div class="menu">
+            <a href="index.html">Home</a>
+            <a href="about-us.html">About Us</a>
+            <a href="contact.html">Contact</a>
+        </div>
+    </nav>
+
+    <!-- Dashboard Heading -->
+    <div class="dashboard-heading">Dashboard</div>
+
+    <!-- Dashboard Section -->
+    <section class="dashboard">
+        <!-- Curated Concepts Button -->
+        <button class="dashboard-btn" onclick="window.location.href='generate_notes.html'">
+            <i class="fas fa-book"></i>
+            <span>Curated Concepts</span>
+        </button>
+
+        <!-- Practice Button -->
+        <button class="dashboard-btn" onclick="window.location.href='generate_questions.html'">
+            <i class="fas fa-code"></i>
+            <span>Practice</span>
+        </button>
+
+        <!-- AI Aid Button -->
+        <button class="dashboard-btn" onclick="window.location.href='AI_AID.HTML'">
+            <i class="fas fa-robot"></i>
+            <span>AI Aid</span>
+        </button>
+
+        <!-- Take Test Button -->
+        <button class="dashboard-btn" onclick="window.location.href='take_test.html'">
+            <i class="fas fa-tasks"></i>
+            <span>Take Test</span>
+        </button>
+    </section>
+
+    <footer class="footer">
+        <p>© 2024 Codify. All Rights Reserved.</p>
+    </footer>
+
+</body>
+</html>

@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Codify - About Us</title>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        body {
+            background: linear-gradient(135deg, #ff4b2b, #ff416c, #833ab4, #4527a0);
+            background-size: 400% 400%;
+            animation: gradientBG 5s ease infinite;
+            color: #fff;
+            margin: 0;
+        }
+
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        header, nav, footer {
+            background-color: rgba(0, 0, 0, 0.5);
+            color: #fff;
+            padding: 6px;
+            text-align: center;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav img {
+            width: 140px;
+            height: 50px;
+        }
+
+        nav a {
+            color: #fff;
+            padding: 10px 20px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 20px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+        }
+
+        nav a:hover {
+            transform: scale(1.2) translateY(-10px);
+            background-color: rgba(255, 221, 87, 0.2);
+            box-shadow: 0 10px 15px rgba(255, 221, 87, 0.4);
+        }
+
+        .about-us-section {
+            padding: 5rem 2rem;
+            text-align: center;
+            margin-top: 60px;
+            background: rgba(0, 0, 0, 0.4);
+            border-radius: 10px;
+            border: 3px solid rgba(255, 221, 87, 0.5);
+        }
+
+        .about-us-section h1 {
+            font-size: 3rem;
+            color: #ffdd57;
+        }
+
+        .about-us-section p {
+            font-size: 1.5rem;
+            margin-top: 20px;
+            line-height: 1.8;
+            text-align: justify;
+        }
+
+        footer {
+            background-color: rgba(0, 0, 0, 0.5);
+            color: #fff;
+            text-align: center;
+            padding: 1.5rem 0;
+            margin-top: 30px;
+        }
+
+        @media (max-width: 768px) {
+            .about-us-section h1 {
+                font-size: 2.5rem;
+            }
+
+            .about-us-section p {
+                font-size: 1.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <img src="Blue_and_Pink_Minimalist_Video_Game_Developer_Studio_Logo__1_-removebg-preview.png" alt="logo">
+            <div>
+                <a href="index.html">Home</a>
+                <a href="languages.html">Programming Languages</a>
+                <a href="about-us.html">About Us</a>
+                <a href="contact.html">Contact</a>
+            </div>
+        </nav>
+    </header>
+
+    <section class="about-us-section">
+        <h1>About Us</h1>
+        <p>We are four friends who came together with a shared passion for coding and innovation. Our journey began during a hackathon where we decided to create a platform that not only simplifies coding practice but also harnesses the power of AI to offer personalized learning experiences. We believe in breaking down complex coding concepts into manageable steps, making learning fun, interactive, and effective for developers of all skill levels.</p>
+        <br>
+        <p>Codify was born out of our desire to help others improve their coding skills by providing an intuitive platform that adapts to each user's learning style. Whether you are a beginner looking to learn the fundamentals or an experienced developer aiming to hone advanced skills, Codify is designed to cater to your needs.</p>
+        <br>
+        <p>Our platform offers a wide range of features, including AI-powered practice questions, concise notes, theory explanations, and real-time problem-solving assistance. We’ve also integrated curated resources and expert project guidance, making Codify a one-stop solution for your coding journey.</p>
+        <br>
+        <p>As a team, we are committed to constantly evolving and enhancing Codify based on user feedback and the latest technological advancements. Together, we aim to inspire a new generation of coders to reach their full potential by leveraging the power of artificial intelligence.</p>
+        <br>
+        <p>Thank you for joining us on this journey. We are excited to be part of your coding adventure and look forward to helping you achieve your goals!</p>
+    </section>
+
+    <footer>
+        <p>Copyright &copy; 2024 Codify. All Rights Reserved.</p>
+    </footer>
+</body>
+</html>

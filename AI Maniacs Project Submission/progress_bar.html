@@ -1,0 +1,14 @@
+<section>
+    <h2>Your Progress</h2>
+    <div class="progress-bar">
+        <div id="progress" class="progress" style="width: 50%">50%</div>
+    </div>
+</section>
+
+<script>
+    // Progress Tracker
+    function updateProgress(percentage) {
+        document.getElementById('progress').style.width = percentage + '%';
+        document.getElementById('progress').textContent = percentage + '%';
+    }
+</script>
