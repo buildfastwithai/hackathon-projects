@@ -1,0 +1,28 @@
+POST http://127.0.0.1:5000/aiml_query HTTP/1.1
+Content-Type: application/json
+Accept: application/json
+
+{
+    "query": "What is unsupervised learning?"
+}
+
+###
+
+### Chat with Document
+
+POST http://localhost:5000/chat_with_document
+Content-Type: application/json
+
+{
+    "question": "What is the main topic of the document?",
+    "history": []
+}
+
+--boundary
+Content-Disposition: form-data; name="files"; filename="AIML.pdf"
+Content-Type: application/pdf
+
+
+--boundary--
+
+
