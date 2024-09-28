@@ -1,0 +1,14 @@
+faiss-cpu
+langchain
+langchain-community
+faiss-cpu
+sentence-transformers
+pypdf
+streamlit-chat
+langchain-groq
+streamlit
+qdrant-client
+torch
+educhain
+flask
+flask-cors
