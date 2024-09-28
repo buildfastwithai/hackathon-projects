@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upload Audio - EduSpot</title>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            height: 100%;
+        }
+        .container {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+        .header {
+            background-color: #1a73e8;
+            color: white;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+        .logo img {
+            width: 40px;
+            height: auto;
+            margin-right: 10px;
+        }
+        .logo h1 {
+            font-size: 1.5rem;
+            margin: 0;
+        }
+        .nav a {
+            color: white;
+            text-decoration: none;
+        }
+        .main-content {
+            flex-grow: 1;
+            background-color: #f0f4f8;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+
+        }
+        .welcome {
+            color: #f77f23;
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+        }
+        .upload-container {
+            background-color: white;
+            border-radius: 10px;
+            padding: 2rem;
+            width: 100%;
+            max-width: 400px;
+            box-shadow: 1px 4px 6px rgba(0.1, 0.2, 0, 0.5);
+        }
+        h2 {
+            color: #333;
+            margin-top: 0;
+        }
+        .upload-btn {
+            display: inline-block;
+            background-color: #1a73e8;
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .upload-btn:hover {
+            background-color: #1557b0;
+        }
+        #fileInput {
+            display: none;
+        }
+        .submit-btn {
+            display: block;
+            width: 100%;
+            padding: 0.5rem;
+            background-color: #27ae60;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1rem;
+            margin-top: 1rem;
+            transition: background-color 0.3s;
+        }
+        .submit-btn:hover {
+            background-color: #229954;
+        }
+        .submit-btn:disabled {
+            background-color: #95a5a6;
+            cursor: not-allowed;
+        }
+        .footer {
+            background-color: #f8f9fa;
+            padding: 1rem;
+            text-align: center;
+        }
+        .footer-text {
+            color: #525452;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .footer-line {
+            width: 100px;
+            height: 2px;
+            background-color: #f77f23;
+            margin-left: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <div class="logo">
+              <img src="{{ url_for('static', filename='images/eduspot3.png') }}" alt="Logo" class="logo" style="width: 90px; height: 70px;">
+                <h1>EduSpot</h1>
+            </div>
+            <nav class="nav">
+                <a href="#">Home</a>
+            </nav>
+        </header>
+        
+        <main class="main-content">
+            <h1 class="welcome">Welcome</h1>
+            <div class="upload-container">
+                <h2>Upload Your Audio Lesson</h2>
+                <form id="uploadForm">
+                    <label for="fileInput" class="upload-btn">Choose Audio File</label>
+                    <input type="file" id="fileInput" accept="audio/*">
+                    <div id="fileName"></div>
+                    <button type="submit" class="submit-btn" id="submitBtn" disabled>Upload Audio</button>
+                </form>
+            </div>
+        </main>
+        
+        <footer class="footer">
+            <div class="footer-text">
+                Thanks for choosing
+                <div class="footer-line"></div>
+            </div>
+        </footer>
+    </div>
+
+    <script>
+        const fileInput = document.getElementById('fileInput');
+        const fileNameDisplay = document.getElementById('fileName');
+        const submitBtn = document.getElementById('submitBtn');
+        const uploadForm = document.getElementById('uploadForm');
+
+        fileInput.addEventListener('change', function() {
+            const file = this.files[0];
+            if (file) {
+                fileNameDisplay.textContent = `Selected file: ${file.name}`;
+                submitBtn.disabled = false;
+            } else {
+                fileNameDisplay.textContent = '';
+                submitBtn.disabled = true;
+            }
+        });
+
+        uploadForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            // Here you would typically send the file to your server
+            alert('Audio upload functionality would be implemented here.');
+        });
+    </script>
+</body>
+</html>

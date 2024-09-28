@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chat with Notes</title>
+  <style>
+    /* Internal CSS */
+    body {
+      font-family: 'Arial', sans-serif;
+      background-color: #f4f4f9;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .chat-container {
+      width: 500px;
+      background-color: white;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    h2 {
+      text-align: center;
+      color: #333;
+      margin-bottom: 20px;
+    }
+
+    .chat-box {
+      flex-grow: 1;
+      overflow-y: auto;
+      padding: 10px;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      background-color: #f9f9f9;
+      margin-bottom: 15px;
+      max-height: 400px;
+    }
+
+    .chat-message {
+      margin-bottom: 10px;
+      padding: 10px;
+      border-radius: 10px;
+      display: inline-block;
+      max-width: 80%;
+      word-wrap: break-word;
+    }
+
+    .user-message {
+      background-color: #3498db;
+      color: white;
+      align-self: flex-end;
+    }
+
+    .bot-message {
+      background-color: #e8f5fe;
+      color: #333;
+      align-self: flex-start;
+    }
+
+    .input-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .input-field {
+      width: 85%;
+      padding: 10px;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      outline: none;
+      font-size: 1rem;
+    }
+
+    .send-btn {
+      padding: 10px;
+      background-color: #3498db;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 1rem;
+      margin-left: 10px;
+      transition: background-color 0.3s ease;
+    }
+
+    .send-btn:hover {
+      background-color: #2980b9;
+    }
+
+    .back-btn {
+      display: block;
+      margin: 10px 0;
+      text-align: center;
+      padding: 10px;
+      background-color: #2ecc71;
+      color: white;
+      text-decoration: none;
+      border-radius: 5px;
+      transition: background-color 0.3s ease;
+    }
+
+    .back-btn:hover {
+      background-color: #27ae60;
+    }
+
+    .navbar {
+    display: flex;
+    align-items: center;
+    background-color: #3866ee; /* Theme color */
+    padding: 10px 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+  }
+
+  /* Left side: Logo and Site Name */
+  .navbar .logo-container {
+    display: flex;
+    align-items: center;
+  }
+
+  .navbar .logo {
+    width: 40px; /* Size of the logo */
+    height: 40px;
+    margin-right: 10px;
+  }
+
+  .navbar .site-name {
+    font-size: 1.5rem;
+    color: white;
+    font-weight: bold;
+  }
+
+  /* Right side: Links */
+  .navbar .nav-links {
+    display: flex;
+
+    gap: 20px; /* Spacing between links */
+  }
+
+  .navbar .nav-links a {
+
+    color: white;
+    text-decoration: none;
+    font-size: 1rem;
+    font-weight: 500;
+    transition: color 0.3s ease;
+  }
+
+  .navbar .nav-links a:hover {
+    color: #fca605; /* Hover color */
+  }
+
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .navbar {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    .navbar .nav-links {
+      flex-direction: column;
+      gap: 10px;
+      margin-top: 10px;
+      width: 100%;
+    }
+  }
+
+ 
+
+
+</style>
+</head>
+
+
+
+
+
+  </style>
+</head>
+
+<body>
+
+<nav class="navbar">
+  <!-- Left side: Logo and site name -->
+  <div class="logo-container" >
+    <img src="/assets/img/eduspot3.png" alt="Logo" class="logo" style="width: 90px; height: 70px;">
+    <span class="site-name">EduSpot</span>
+  </div>
+
+  <!-- Right side: Navigation Links -->
+  <div class="nav-links" style="    margin-left: 1080px;">
+    <a href="#" style="font-weight: 700; font-size: 1rem;" >Home</a>
+    <a href="#" style="font-weight: 700; font-size: 1rem;" >Registration</a>
+    <a href="#" style="font-weight: 700; font-size: 1rem;" >Login</a>
+    
+   
+  </div>
+
+ 
+</nav>
+ 
+<div style="margin-top: 320px;">
+
+<div style="margin-top: -400px; margin-left: 180px;">
+
+</div>
+
+  <div class="chat-container" style="margin-top: 50px;" >
+<div style="background-color: #3866ee;  margin-top: -20px; height: 40px; width: 540px; margin-left: -20px; border-radius:10px; display: flex">
+  <span  style="font-size:1rem; margin-top: 5px; font-weight: bold;  padding: 5px 10px; color: #fdfdfd; ">User's Name !</span>
+
+<h5 style="margin-top: 14px; color: rgb(167, 217, 255);">Chat with notes</h5></div>
+    <div id="chatBox" class="chat-box" style="margin-top: 10px;">
+      <!-- Chat messages will be dynamically appended here -->
+    </div>
+
+    <div class="input-container">
+      <input type="text" id="userInput" class="input-field" placeholder="Type your message...">
+      <button class="send-btn" onclick="sendMessage()">Send</button>
+    </div>
+
+    <a href="{{ url_for('view_notes') }}" class="back-btn">Back to Notes</a>
+  </div>
+  </div>
+
+  <script>
+    async function sendMessage() {
+      const chatBox = document.getElementById('chatBox');
+      const userInput = document.getElementById('userInput');
+      const message = userInput.value.trim();
+
+      if (message) {
+        // Create user message element
+        const userMessage = document.createElement('div');
+        userMessage.classList.add('chat-message', 'user-message');
+        userMessage.textContent = message;
+        chatBox.appendChild(userMessage);
+
+        // Scroll chat to bottom
+        chatBox.scrollTop = chatBox.scrollHeight;
+
+        // Send message to the Flask backend
+        try {
+          const response = await fetch('/chat', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/x-www-form-urlencoded',
+            },
+            body: new URLSearchParams({
+              'user_input': message,
+            }),
+          });
+
+          const data = await response.json();
+          const botMessage = document.createElement('div');
+          botMessage.classList.add('chat-message', 'bot-message');
+          botMessage.textContent = data.response; // Get the response from Flask
+          chatBox.appendChild(botMessage);
+        } catch (error) {
+          console.error('Error:', error);
+          const errorMessage = document.createElement('div');
+          errorMessage.classList.add('chat-message', 'bot-message');
+          errorMessage.textContent = "Sorry, I couldn't process your request.";
+          chatBox.appendChild(errorMessage);
+        }
+
+        // Scroll chat to bottom
+        chatBox.scrollTop = chatBox.scrollHeight;
+
+        // Clear the input field
+        userInput.value = '';
+      }
+    }
+  </script>
+
+</body>
+</html>

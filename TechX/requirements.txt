@@ -1,0 +1,9 @@
+Flask==2.2.3
+Flask-SQLAlchemy==2.5.1
+Werkzeug==2.2.3
+SpeechRecognition==3.8.1
+pydub==0.25.1
+langchain-groq==0.0.1  
+langchain-vectorstores==0.0.1  
+langchain-community==0.0.1  
+langchain-core==0.0.1 

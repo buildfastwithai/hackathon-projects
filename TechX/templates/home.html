@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <title>EduSpot</title>
+  <meta name="description" content="">
+  <meta name="keywords" content="">
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com" rel="preconnect">
+  <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+  <!-- Vendor CSS Files -->
+  <link href="{{ url_for('static', filename='assets/vendor/edutech/css/edutech.min.css') }}" rel="stylesheet">
+  <link href="{{ url_for('static', filename='assets/vendor/edutech-icons/edutech-icons.css') }}" rel="stylesheet">
+  <link href="{{ url_for('static', filename='assets/vendor/aos/aos.css') }}" rel="stylesheet">
+  <link href="{{ url_for('static', filename='assets/vendor/glightbox/css/glightbox.min.css') }}" rel="stylesheet">
+  <link href="{{ url_for('static', filename='assets/vendor/swiper/swiper-bundle.min.css') }}" rel="stylesheet">
+  <!-- Main CSS File -->
+  <link href="{{ url_for('static', filename='css/home.css') }}" rel="stylesheet">
+</head>
+<body class="index-page" >
+  <header id="header" class="header d-flex align-items-center fixed-top">
+    <div class="container-fluid container-xl position-relative d-flex align-items-center justify-content-between" >
+
+      <a href="" class="logo d-flex align-items-center">
+       <img src="{{ url_for('static', filename='images/eduspot3.png') }}" style="width: 60px; height: 100px;" alt="">
+        <h1 class="sitename">EduSpot</h1>
+      </a>
+
+      <nav id="navmenu" class="navmenu">
+        <ul>
+          <li><a href="#hero">Home</a></li>
+          <li><a href="#fea">Features</a></li>
+          <li><a href="#how">How To Use</a></li>
+          
+        
+        <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
+      </nav>
+
+    </div>
+  </header>
+
+  <main class="main" >
+
+    <!-- Hero Section -->
+    <section id="hero" class="hero section dark-background">
+      <img src="{{ url_for('static', filename='images/hero-bg-2.jpg') }}" alt="" class="hero-bg">
+
+      <div class="container">
+        <div class="row gy-4 justify-content-between">
+          <div class="col-lg-4 order-lg-last hero-img" data-aos="zoom-out" data-aos-delay="100">
+            <img src="{{ url_for('static', filename='images/student23.png') }}" class="img-fluid animated" alt="">
+          </div>
+
+          <div class="col-lg-6  d-flex flex-column justify-content-center" data-aos="fade-in">
+            <h1>Enhance Your Education with  <span>Smart Audio-to-Text Notes</span></h1>
+            <p>Enhance your learning experience with our innovative platform that converts audio into text and highlights key concepts. </p>
+            <div class="d-flex" >
+              <span>
+                <a href="/login" class="btn-get-started" style="border: 2px solid rgb(234, 234, 237);color: white;  background-color: rgba(255, 115, 0, 0.956); font-size:medium;font:bolder; font-weight: 400;">Login</a>
+              <a href="/register" class="btn-get-started" style="border: 2px solid rgb(207, 207, 220); color: white; background-color: rgba(255, 115, 0, 0.956); font-size:medium;">Registration</a>
+              </span>
+              </div>
+          </div>
+
+        </div>
+      </div>
+
+      <svg class="hero-waves" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 24 150 28 " preserveAspectRatio="none">
+        <defs>
+          <path id="wave-path" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z"></path>
+        </defs>
+        <g class="wave1">
+          <use xlink:href="#wave-path" x="50" y="3"></use>
+        </g>
+        <g class="wave2">
+          <use xlink:href="#wave-path" x="50" y="0"></use>
+        </g>
+        <g class="wave3">
+          <use xlink:href="#wave-path" x="50" y="9"></use>
+        </g>
+      </svg>
+
+    </section><!-- /Hero Section -->
+    <!-- About Section -->
+    <section  class="about section" >
+
+      <div class="container" data-aos="fade-up" data-aos-delay="100" id="fea">
+        <div class="row align-items-xl-center gy-5">
+
+          <div class="col-xl-5 content">
+            <h2>Our Key Features</h2>
+            <p>Customize your notes to fit your study style, organizing and formatting them as needed. Plus, with multilingual support, the platform accommodates a wide range of languages. </p>
+          </div>
+
+          <div class="col-xl-7">
+            <div class="row gy-4 icon-boxes">
+
+              <div class="col-md-6" data-aos="fade-up" data-aos-delay="200">
+                <div class="icon-box">
+                  <i class="bi bi-headset"></i>
+                  <h3>Audio-to-Text Conversion</h3>
+                  <p>Transform spoken words into written notes with ease. Our platform converts lectures, discussions, and any other audio into accurate, searchable text, saving you hours of manual transcription.</p>
+                </div>
+              </div> <!-- End Icon Box -->
+
+              <div class="col-md-6" data-aos="fade-up" data-aos-delay="300">
+                <div class="icon-box">
+                  <i class="bi bi-clipboard-pulse"></i>
+                  <h3>Keyword Extraction</h3>
+                  <p>Automatically identify and highlight the most important concepts. Our system extracts key terms and ideas from the text, making it easier to focus on what really matters for studying and revision.</h3></p>
+                </div>
+              </div> <!-- End Icon Box -->
+
+              <div class="col-md-6" data-aos="fade-up" data-aos-delay="400">
+                <div class="icon-box">
+                  <i class="bi bi-command"></i>
+                  <h3>Customizable Notes and Summaries</h3>
+                  <p>Tailor your notes to your needs. Reorganize, summarize, and format the text, ensuring you capture the information in a way that works best for you.</h3>
+                  </p>
+                </div>
+              </div> <!-- End Icon Box -->
+
+              <div class="col-md-6" data-aos="fade-up" data-aos-delay="500">
+                <div class="icon-box">
+                  <i class="bi bi-graph-up-arrow"></i>
+                  <h3>Multilingual Support</h3>
+                  <p>Whether your lecture is in English, Spanish, or any other language, our platform supports a wide range of languages, ensuring students around the world can benefit from this tool.
+                  </p>
+                </div>
+              </div> <!-- End Icon Box -->
+
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </section><!-- /About Section -->
+
+   
+
+   
+    <!-- Details Section -->
+    <section id="details" class="details section" id="how">
+
+      <!-- Section Title -->
+      <div class="container section-title" data-aos="fade-up" id="how">
+        <h2>Check Details</h2>
+        <div><span>How To </span> <span class="description-title">Use</span></div>
+      </div><!-- End Section Title -->
+
+      <div class="container2" style="width: 100%;">
+        
+        <div class="how-it-works" >
+            <div class="step right">
+                <div class="step-content">
+                    <h3 style="font: 300; font-size: xx-large; color: blue;">Step 1: Login or Registration</h3>
+                    <p>Start by logging into your account or registering if you're a new user.</p>
+                </div>
+                <div class="step-image">
+                    <img src="{{ url_for('static', filename='images/first.png') }}" alt="Login or Registration">
+                </div>
+            </div>
+            <div class="step left">
+                <div class="step-content">
+                    <h3 style="font: 300; font-size: xx-large; color: blue;">Step 2: Upload Audio</h3>
+                    <p>Upload your audio files in supported formats (MP3, WAV).</p>
+                </div>
+                <div class="step-image">
+                    <img src="{{ url_for('static', filename='images/audio.png') }}" alt="Upload Audio">
+                </div>
+              
+            </div>
+            <div class="step right">
+                <div class="step-content">
+                    <h3 style="font: 300; font-size: xx-large; color: blue;">Step 3: Keyword Spotting</h3>
+                    <p>The system processes your audio to identify relevant keywords and phrases.</p>
+                </div>
+                <div class="step-image">
+                    <img src="{{ url_for('static', filename='images/third.png') }}" alt="Keyword Spotting">
+                </div>
+            </div>
+           
+            <div class="step left">
+                <div class="step-content" style="margin-right: 100px;">
+                  
+                    <h3 style="font: 300; font-size: xx-large; color: blue;">Step 4: Generate Notes</h3>
+                    <p>The system compiles the keywords into structured notes for you.</p>
+                </div>
+                <div class="step-image">
+                    <img src="{{ url_for('static', filename='images/notes.png') }}" alt="Generate Notes" style="width: 100px; height: 100px; margin-left: 100px;">
+                </div>
+            </div>
+            
+            <div class="step right">
+                <div class="step-content">
+                    <h3 style="font: 300; font-size: xx-large; color: blue;">Step 6: Download or Share</h3>
+                    <p>Download your notes or share them directly through the platform.</p>
+                </div>
+                <div class="step-image">
+                    <img src="{{ url_for('static', filename='images/download2.png') }}" alt="Download or Share">
+                </div>
+            </div>
+        </div>
+    </div>
+
+        
+    
+   
+  
+
+  <!-- <footer id="footer" class="footer dark-background">
+
+    <div class="container footer-top">
+      <div class="row gy-4">
+        <div class="col-lg-4 col-md-6 footer-about">
+          <a href="index.html" class="logo d-flex align-items-center">
+            <span class="sitename">Bootslander</span>
+          </a>
+          <div class="footer-contact pt-3">
+            <p>A108 Adam Street</p>
+            <p>New York, NY 535022</p>
+            <p class="mt-3"><strong>Phone:</strong> <span>+1 5589 55488 55</span></p>
+            <p><strong>Email:</strong> <span>info@example.com</span></p>
+          </div>
+          <div class="social-links d-flex mt-4">
+            <a href=""><i class="bi bi-twitter-x"></i></a>
+            <a href=""><i class="bi bi-facebook"></i></a>
+            <a href=""><i class="bi bi-instagram"></i></a>
+            <a href=""><i class="bi bi-linkedin"></i></a>
+          </div>
+        </div>
+
+        <div class="col-lg-2 col-md-3 footer-links">
+          <h4>Useful Links</h4>
+          <ul>
+            <li><a href="#">Home</a></li>
+            <li><a href="#">About us</a></li>
+            <li><a href="#">Services</a></li>
+            <li><a href="#">Terms of service</a></li>
+            <li><a href="#">Privacy policy</a></li>
+          </ul>
+        </div>
+
+        <div class="col-lg-2 col-md-3 footer-links">
+          <h4>Our Services</h4>
+          <ul>
+            <li><a href="#">Web Design</a></li>
+            <li><a href="#">Web Development</a></li>
+            <li><a href="#">Product Management</a></li>
+            <li><a href="#">Marketing</a></li>
+            <li><a href="#">Graphic Design</a></li>
+          </ul>
+        </div>
+
+        <div class="col-lg-4 col-md-12 footer-newsletter">
+          <h4>Our Newsletter</h4>
+          <p>Subscribe to our newsletter and receive the latest news about our products and services!</p>
+          <form action="forms/newsletter.php" method="post" class="php-email-form">
+            <div class="newsletter-form"><input type="email" name="email"><input type="submit" value="Subscribe"></div>
+            <div class="loading">Loading</div>
+            <div class="error-message"></div>
+            <div class="sent-message">Your subscription request has been sent. Thank you!</div>
+          </form>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="container copyright text-center mt-4">
+      <p>© <span>Copyright</span> <strong class="px-1 sitename">Bootslander</strong> <span>All Rights Reserved</span></p>
+      <div class="credits">
+        <!-- All the links in the footer should remain intact. -->
+        <!-- You can delete the links only if you've purchased the pro version. -->
+        <!-- Licensing information: https://bootstrapmade.com/license/ -->
+        <!-- Purchase the pro version with working PHP/AJAX contact form: [buy-url] -->
+        <!-- Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a> -->
+      </div>
+    </div>
+
+  </footer>
+
+  <!-- Scroll Top -->
+  <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+  <!-- Preloader -->
+  <div id="preloader"></div>
+
+  <!-- Vendor JS Files -->
+
+  <script src="{{ url_for('static', filename='assets/vendor/aos/aos.js') }}"></script>
+  <script src="{{ url_for('static', filename='assets/vendor/glightbox/js/glightbox.min.js') }}"></script>
+  <script src="{{ url_for('static', filename='assets/vendor/purecounter/purecounter_vanilla.js') }}"></script>
+  <script src="{{ url_for('static', filename='assets/vendor/swiper/swiper-bundle.min.js') }}"></script>
+  
+  <!-- Main JS File -->
+  <script src="{{ url_for('static', filename='js/home.js') }}"></script>  
+
+</body>
+
+</html>
