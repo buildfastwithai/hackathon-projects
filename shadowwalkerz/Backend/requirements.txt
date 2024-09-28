@@ -1,0 +1,12 @@
+streamlit
+langchain_google_genai
+langchain
+PyPDF2
+werkzeug
+sqlite3
+flask_cors
+re
+pdfminer
+pydub
+gtts
+moviepy

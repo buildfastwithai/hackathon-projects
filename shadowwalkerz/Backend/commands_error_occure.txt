@@ -1,0 +1,3 @@
+
+pip install -U langchain-community
+pip install langchain faiss-cpu google-generativeai streamlit PyPDF2 python-dotenv
