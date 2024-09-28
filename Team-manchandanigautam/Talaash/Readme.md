@@ -76,6 +76,6 @@ The Apna Teacher feature is currently based on the idea that we can train ai on 
 
 ## Questions? Hit Us Up! 📬
 
-Got questions? Ideas? Just want to chat? Drop us a line at: your-email@example.com
+Got questions? Ideas? Just want to chat? Drop me a line at: manchandanigautam@gmail.com
 
 Now go forth and conquer that learning curve! 💪📚
