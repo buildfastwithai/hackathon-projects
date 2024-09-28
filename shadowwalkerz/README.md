@@ -1,6 +1,32 @@
-# preception
+## Team Name : Shadow Walkerz
+# Project : Perception
 
-A new Flutter project.
+- In Backend Folder You need to download the dataset of images Collection
+- Backend -> dataset -> english set in this format
+- AFTER
+
+# Installation Backend
+- pip install -r requirements.txt
+- if any error occur related to community and command error text file available in folder
+
+# Run Background Command
+- python app.py
+
+![image](https://github.com/user-attachments/assets/16668054-41e1-4200-9cc5-b5e324a56642)
+
+
+## install the app 
+# First its neccessary proper to set up flutter
+- download flutter and set up
+- flutter clean
+- flutter pub get
+  ![image](https://github.com/user-attachments/assets/e6285ad0-ddeb-46c4-858b-1545fa859678)
+
+# api setup 
+- constant file : "http://.... app.py paste"
+
+# Run the app 
+- flutter run command
 
 ## Getting Started
 
