@@ -28,15 +28,11 @@
 # Run the app 
 - flutter run command
 
-## Getting Started
+# Build the apk File
+- firstly project name change to "preception" because during building apk its finds the proper path
+- flutter build apk Command use
 
-This project is a starting point for a Flutter application.
+## App Interface
+![WhatsApp Image 2024-09-28 at 1 17 14 AM](https://github.com/user-attachments/assets/ffb2d087-b5b9-4a5b-a15d-f6e8d4812b75)
 
-A few resources to get you started if this is your first Flutter project:
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
