@@ -1,0 +1,289 @@
+{% extends 'base.html' %}
+{% block start %}
+
+<div class="container-xxl py-5 bg-primary hero-header mb-5">
+    <div class="container my-5 py-5 px-lg-5">
+        <div class="row g-5 py-5">
+            <div class="col-lg-6 text-center text-lg-start">
+                <h1 class="text-white mb-4 animated zoomIn">
+                    <!-- "Code, Careers, Currents: Your Global Hub for Hackathons, Jobs, and Tech News!" -->
+                    Your Global Hub for Latest Hackathons, Jobs, and News
+                </h1>
+                <p class="text-white pb-3 animated zoomIn">
+                    Discover everything you need in one place! Your Global Hub brings you the newest Hackathons, 
+                    job opportunities, and breaking news in easy-to-understand language. 
+                    Explore innovation, find exciting career paths, and stay updated with the latest tech trends—all on our user-friendly website
+                </p>
+            </div>
+            <div class="col-lg-6 text-center text-lg-start">
+                <img class="img-fluid" src="../static/img/hero.png" alt="">
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Navbar & Hero End -->
+
+
+<!-- Full Screen Search Start -->
+<div class="modal fade" id="searchModal" tabindex="-1">
+    <div class="modal-dialog modal-fullscreen">
+        <div class="modal-content" style="background: rgba(29, 29, 39, 0.7);">
+            <div class="modal-header border-0">
+                <button type="button" class="btn bg-white btn-close" data-bs-dismiss="modal"
+                    aria-label="Close"></button>
+            </div>
+            <div class="modal-body d-flex align-items-center justify-content-center">
+                <div class="input-group" style="max-width: 600px;">
+                    <input type="text" class="form-control bg-transparent border-light p-3"
+                        placeholder="Type search keyword">
+                    <button class="btn btn-light px-4"><i class="bi bi-search"></i></button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Full Screen Search End -->
+
+
+<!-- About Start -->
+<div class="container-xxl py-5">
+    <div class="container px-lg-5">
+        <div class="row g-5">
+            <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.1s">
+                <div class="section-title position-relative mb-4 pb-2">
+                    <h6 class="position-relative text-primary ps-4">About Us</h6>
+                    <h2 class="mt-2">We scrap more than 100+ trusted sources for Real-Time Data</h2>
+                </div>
+                <p class="mb-4" style="color: rgb(19, 17, 17);">
+                    Explore the world of real-time information with our website! 
+                    We scrape over 100 trusted sources to bring you the latest data in a friendly and accessible manner. 
+                    Stay informed effortlessly as we deliver up-to-the-minute updates from a variety of reliable channels.
+                </p>
+                <div class="row g-3">
+                    <div class="col-sm-6">
+                        <h6 class="mb-3"><i class="fa fa-check text-primary me-2"></i>Latest Hackathon</h6>
+                        <h6 class="mb-0"><i class="fa fa-check text-primary me-2"></i>Hotest Jobs</h6>
+                    </div>
+                    <div class="col-sm-6">
+                        <h6 class="mb-3"><i class="fa fa-check text-primary me-2"></i>Breaking News</h6>
+                        <h6 class="mb-0"><i class="fa fa-check text-primary me-2"></i>Advertise Your Products</h6>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <img class="img-fluid wow zoomIn" data-wow-delay="0.5s" src="../static/img/about.jpg">
+            </div>
+        </div>
+    </div>
+</div>
+<!-- About End -->
+
+
+<!-- Service Start -->
+<div class="container-xxl py-5">
+    <div class="container px-lg-5">
+        <div class="section-title position-relative text-center mb-5 pb-2 wow fadeInUp" data-wow-delay="0.1s">
+            <h6 class="position-relative d-inline text-primary ps-4">Our Services</h6>
+            <h4 class="mt-2">Experience excellence through our comprehensive range of services</h4>
+        </div>
+        <div class="row g-4">
+            <div class="col-lg-4 col-md-6 wow zoomIn" data-wow-delay="0.1s">
+                <div class="service-item d-flex flex-column justify-content-center text-center rounded">
+                    <div class="service-icon flex-shrink-0">
+                        <i class="fa fa-home fa-2x"></i>
+                    </div>
+                    <h5 class="mb-3">Contests and Hackathons</h5>
+                    <p style="color: rgb(19, 17, 17);">
+                        Explore a world of opportunities by discovering the latest Contests and Hackathons. 
+                        Unleash your creativity, compete with the best, and turn your ideas into reality. 
+                    </p>
+                    <a class="btn px-3 mt-auto mx-auto" href="/contest/">Read More</a>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6 wow zoomIn" data-wow-delay="0.3s">
+                <div class="service-item d-flex flex-column justify-content-center text-center rounded">
+                    <div class="service-icon flex-shrink-0">
+                        <i class="fa fa-home fa-2x"></i>
+                    </div>
+                    <h5 class="mb-3">Latest Jobs</h5>
+                    <p style="color: rgb(19, 17, 17);">
+                        Discover a multitude of opportunities by exploring our platform for finding the latest Jobs. 
+                        From cutting-edge tech roles to exciting career prospects, Your are just a click away! 
+                        
+                    </p>
+                    <a class="btn px-3 mt-auto mx-auto" href="/job/">Read More</a>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6 wow zoomIn" data-wow-delay="0.6s">
+                <div class="service-item d-flex flex-column justify-content-center text-center rounded">
+                    <div class="service-icon flex-shrink-0">
+                        <i class="fa fa-home fa-2x"></i>
+                    </div>
+                    <h5 class="mb-3">Breaking News</h5>
+                    <p style="color: rgb(19, 17, 17);">
+                        Dive into the pulse of the moment by exploring our platform for finding Breaking News. 
+                        From industry updates to tech trends, we deliver the latest information at your fingertips. 
+                    </p>
+                    <a class="btn px-3 mt-auto mx-auto" href="/news/">Read More</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Service End -->
+
+
+<!-- Testimonial Start -->
+
+<div class="container-xxl bg-primary testimonial py-5 my-2 wow fadeInUp" data-wow-delay="0.1s">
+    <h6 class="text-center text-white">Our Customers</h6>
+    <h4 class="mt-2 text-center text-white">Explore the success stories of our valued Customers</h4>
+    <div class="container py-5 px-lg-5">
+        <div class="owl-carousel testimonial-carousel">
+            <div class="testimonial-item bg-transparent border rounded text-white p-4">
+                <i class="fa fa-quote-left fa-2x mb-3"></i>
+                <p>
+                    As an aspiring developer, Your BiteBase has been my go-to resource for discovering 
+                    the latest hackathons and staying informed about industry trends.
+                </p>
+                <div class="d-flex align-items-center">
+                    <img class="img-fluid flex-shrink-0 rounded-circle" src="../static/img/testimonial-1.jpg"
+                        style="width: 50px; height: 50px;">
+                    <div class="ps-3">
+                        <h6 class="text-white mb-1">Anjali Mishra</h6>
+                        <small>Software Developer</small>
+                    </div>
+                </div>
+            </div>
+            <div class="testimonial-item bg-transparent border rounded text-white p-4">
+                <i class="fa fa-quote-left fa-2x mb-3"></i>
+                <p>
+                    BiteBase has revolutionized the way I stay updated on the tech landscape. 
+                    The extensive coverage of hackathons and breaking news, all presented in a friendly manner.
+                </p>
+                <div class="d-flex align-items-center">
+                    <img class="img-fluid flex-shrink-0 rounded-circle" src="../static/img/testimonial-2.jpg"
+                        style="width: 50px; height: 50px;">
+                    <div class="ps-3">
+                        <h6 class="text-white mb-1">Pankaj Yadav</h6>
+                        <small>Computer Scientist</small>
+                    </div>
+                </div>
+            </div>
+            <div class="testimonial-item bg-transparent border rounded text-white p-4">
+                <i class="fa fa-quote-left fa-2x mb-3"></i>
+                <p>
+                    Finding the right job in the tech world can be challenging, but BiteBase simplified the process for me.
+                    I am very thankful to BiteBase Team.
+                </p>
+                <div class="d-flex align-items-center">
+                    <img class="img-fluid flex-shrink-0 rounded-circle" src="../static/img/testimonial-3.jpg"
+                        style="width: 50px; height: 50px;">
+                    <div class="ps-3">
+                        <h6 class="text-white mb-1">Raushan Kumar</h6>
+                        <small>Web Developer</small>
+                    </div>
+                </div>
+            </div>
+            <div class="testimonial-item bg-transparent border rounded text-white p-4">
+                <i class="fa fa-quote-left fa-2x mb-3"></i>
+                <p>
+                    Finding the right job in the tech world can be challenging, but Your Global Hub simplified the process for me.
+                    BiteBase's curated content and real-time data helped me a lot.
+                </p>                
+                <div class="d-flex align-items-center">
+                    <img class="img-fluid flex-shrink-0 rounded-circle" src="../static/img/testimonial-4.jpg"
+                        style="width: 50px; height: 50px;">
+                    <div class="ps-3">
+                        <h6 class="text-white mb-1">Surbhi Shree</h6>
+                        <small>ML Engineer</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Testimonial End -->
+
+
+
+<!-- Team Start -->
+<div class="container-xxl py-5">
+    <div class="container px-lg-5">
+        <div class="section-title position-relative text-center mb-5 pb-2 wow fadeInUp" data-wow-delay="0.1s">
+            <h6 class="position-relative d-inline text-primary ps-4">Our Motivation</h6>
+            <h4 class="mt-2">Driven by Innovations in Computer Science</h4>
+        </div>
+        <!-- <div class="row g-4">
+            <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
+                <div class="team-item">
+                    <div class="d-flex">
+                        <div class="flex-shrink-0 d-flex flex-column align-items-center mt-4 pt-5" style="width: 75px;">
+                            <a class="btn btn-square text-primary bg-white my-1" href=""><i
+                                    class="fab fa-facebook-f"></i></a>
+                            <a class="btn btn-square text-primary bg-white my-1" href=""><i
+                                    class="fab fa-twitter"></i></a>
+                            <a class="btn btn-square text-primary bg-white my-1" href=""><i
+                                    class="fab fa-instagram"></i></a>
+                            <a class="btn btn-square text-primary bg-white my-1" href=""><i
+                                    class="fab fa-linkedin-in"></i></a>
+                        </div>
+                        <img class="img-fluid rounded w-100" src="../static/img/nagmani.png" alt="">
+                    </div>
+                    <div class="px-4 py-3">
+                        <h5 class="fw-bold m-0">Nagmani Kumar</h5>
+                        <small><b>Team Lead [Backend and ML]</b></small>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
+                <div class="team-item">
+                    <div class="d-flex">
+                        <div class="flex-shrink-0 d-flex flex-column align-items-center mt-4 pt-5" style="width: 75px;">
+                            <a class="btn btn-square text-primary bg-white my-1" href=""><i
+                                    class="fab fa-facebook-f"></i></a>
+                            <a class="btn btn-square text-primary bg-white my-1" href=""><i
+                                    class="fab fa-twitter"></i></a>
+                            <a class="btn btn-square text-primary bg-white my-1" href=""><i
+                                    class="fab fa-instagram"></i></a>
+                            <a class="btn btn-square text-primary bg-white my-1" href=""><i
+                                    class="fab fa-linkedin-in"></i></a>
+                        </div>
+                        <img class="img-fluid rounded w-100"
+                            src="../static/img/WhatsApp Image 2023-11-23 at 3.08.51 PM.jpeg" alt="">
+                    </div>
+                    <div class="px-4 py-3">
+                        <h5 class="fw-bold m-0">Ram Baran</h5>
+                        <small><b>FrontEnd Developer</b></small>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.6s">
+                <div class="team-item">
+                    <div class="d-flex">
+                        <div class="flex-shrink-0 d-flex flex-column align-items-center mt-4 pt-5" style="width: 75px;">
+                            <a class="btn btn-square text-primary bg-white my-1" href=""><i
+                                    class="fab fa-facebook-f"></i></a>
+                            <a class="btn btn-square text-primary bg-white my-1" href=""><i
+                                    class="fab fa-twitter"></i></a>
+                            <a class="btn btn-square text-primary bg-white my-1" href=""><i
+                                    class="fab fa-instagram"></i></a>
+                            <a class="btn btn-square text-primary bg-white my-1" href=""><i
+                                    class="fab fa-linkedin-in"></i></a>
+                        </div>
+                        <img class="img-fluid rounded w-100" src="../static/img/amit.jpg" alt="">
+                    </div>
+                    <div class="px-4 py-3">
+                        <h5 class="fw-bold m-0">Amit Diwakar</h5>
+                        <small><b>UI/UX Designer</b></small>
+                    </div>
+                </div>
+            </div>
+        </div> -->
+        <p style="text-align: center; font-size: 20px; color: black;">If future generations are to remember us more with gratitude than sorrow, we must achieve more than just the miracles of technology. We must also leave them a glimpse of the world as it was created, not just as it looked when we got through with it.</p>
+        <p style="text-align: end;">Lyndon B. Johnson - Former President,USA</p>
+    </div>
+</div>
+<!-- Team End -->
+
+{%endblock%}
