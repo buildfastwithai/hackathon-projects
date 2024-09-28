@@ -8,17 +8,17 @@ Submission Details
 
 Submit the following information via the provided Google Form for us to access your AI applications:
 
-Team Name: Your team's unique name.
+Team Name: TechDuo
 
-App Name: The name of your AI application.
+App Name: Study Sphere
 
-App Description: A brief overview of what your app does and its core features.
+App Description: STUDY-SPHERE is an AI-driven learning platform offering personalized domain-specific resources, interactive tools, and real-time support for students and professionals to enhance their knowledge and connect with like-minded communities.
 
 GitHub PR Link: The link to your Pull Request (PR) in the project repository.
 
 App Link: A link to the deployed version of your app.
 
-Loom Video: A demo video link showing your app in action.
+Loom Video: [A demo video link showing your app in action.](https://drive.google.com/drive/folders/1i3vVhHjqSb8PRuJB-pnu-UOewQNn6JN5?usp=sharing)
 
 
 For detailed submission guidelines, please refer to the last doubt session recording: https://www.buildfastwithai.com/hackathon.
