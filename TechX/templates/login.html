@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign In</title>
+    <link href="{{ url_for('static', filename='css/login.css') }}" rel="stylesheet">
+</head>
+<body style="background: linear-gradient(135deg, rgba(240, 236, 233, 0.956) 0%, #3866ee 100%)">
+    <div style="display: flex;">
+
+        <div class="container" style="display: flex; column-gap: 70px;">
+            
+            <div class="form-container" >
+                <h2>Sign in</h2>
+                <form id="loginForm">
+                    <label for="username">Username</label>
+                    <input type="text" id="username" name="username" placeholder="John Doe" required>
+    
+                    <label for="password">Password</label>
+                    <input type="password" id="password" name="password" placeholder="Password" required>
+    
+                    <div class="remember-me">
+                        <input type="checkbox" id="remember" name="remember">
+                        <label for="remember">Remember me</label>
+                    </div>
+    
+                    <button type="submit" style="background-color: #1e47c3;">Log in</button>
+    
+                </form>
+            </div>
+            <div class="image-container"></div>
+                <img src="{{ url_for('static', filename='images/table.png') }}"  alt="Login Illustration" style="width: 400px; height: 500px;">
+            </div>
+        </div>
+</div>
+</div>
+</body>
+<script src="{{ url_for('static', filename='js/scripts.js') }}"></script>  
+</html>

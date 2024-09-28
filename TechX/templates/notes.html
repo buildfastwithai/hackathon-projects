@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generated Notes</title>
+ 
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        .container {
+            width: 80%;
+            margin: auto;
+            overflow: hidden;
+        }
+
+        header {
+            color: #fff;
+            padding-top: 30px;
+            min-height: 70px;
+            border-bottom: #77a5a5 3px solid;
+        }
+
+        header a {
+            color: #fff;
+            text-decoration: none;
+            text-transform: uppercase;
+            font-size: 16px;
+        }
+
+        #main-content {
+            background: #fff;
+            padding: 20px;
+            margin-top: 20px;
+            box-shadow: 0px 0px 10px 0px #ccc;
+        }
+
+
+        pre {
+            background: #f4f4f4;
+            padding: 10px;
+            border: 1px solid #ccc;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
+
+        footer {
+            color: #fff;
+            text-align: center;
+            padding: 10px;
+            margin-top: 20px;
+        }
+
+        .navbar {
+            display: flex;
+            align-items: center;
+            background-color: #3866ee; /* Theme color */
+            padding: 10px 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .navbar .logo-container {
+            display: flex;
+            align-items: center;
+        }
+
+        .navbar .logo {
+            width: 40px; /* Size of the logo */
+            height: 40px;
+            margin-right: 10px;
+        }
+
+        .navbar .site-name {
+            font-size: 1.5rem;
+            color: white;
+            font-weight: bold;
+        }
+
+        .navbar .nav-links {
+            display: flex;
+            gap: 20px; /* Spacing between links */
+        }
+
+        .navbar .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-size: 1rem;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .navbar .nav-links a:hover {
+            color: #fca605; /* Hover color */
+        }
+
+        @media (max-width: 768px) {
+            .navbar {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .navbar .nav-links {
+                flex-direction: column;
+                gap: 10px;
+                margin-top: 10px;
+                width: 100%;
+            }
+        }
+
+        .download-btn {
+            display: block;
+            background-color: #3866ee;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            text-align: center;
+            cursor: pointer;
+            margin: 20px 0;
+            border-radius: 5px;
+        }
+
+        .download-btn:hover {
+            background-color: #fca605;
+        }
+ 
+    </style>
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="logo-container">
+            <img src="{{ url_for('static', filename='images/eduspot3.png') }}" alt="Logo" class="logo" style="width: 90px; height: 70px;">
+            <span class="site-name">EduSpot</span>
+        </div>
+      
+        <div class="nav-links" style="margin-left: 1080px;">
+            <div class="container" style="margin-left: -100px;">
+                <nav style="display: flex;">
+                    <a href="{{ url_for('upload_file') }}" style="font-weight: 700; font-size: 1rem; width: 400px;">Upload Another File</a>
+                    <a href="{{ url_for('logout') }}" style="font-weight: 700; font-size: 1rem;">Logout</a>
+                    <a href="{{ url_for('chat') }}" style="font-weight: 700; font-size: 1rem; margin-left: 55px;">Chat</a>
+                </nav>
+            </div>
+        </div>
+    </nav>
+
+    <div style="margin-top: 130px;">
+        <h1 style="color: rgb(255, 123, 0); margin-left: 100px;">Notes</h1>
+
+        <div class="container" id="main-content">
+            <span id="notes-content">{{ notes|safe }}</span> <!-- Display the notes stored in the session -->
+        </div>
+
+        <!-- Download Button -->
+        <button class="download-btn" onclick="downloadNotes()" style="margin-left: 750px;">Download Notes</button>
+    
+        
+    </div>
+
+    <footer>
+        <p>&copy; 2024 EduSpot AI Notes Maker</p>
+    </footer>
+
+    <script>
+        function downloadNotes() {
+            const notes = document.getElementById('notes-content').innerText; // Get the notes content
+            const blob = new Blob([notes], { type: 'text/plain' }); // Create a Blob object with the notes
+            const url = URL.createObjectURL(blob); // Create a URL for the Blob object
+            const a = document.createElement('a'); // Create an anchor element
+            a.href = url;
+            a.download = 'notes.txt'; // Set the filename for download
+            document.body.appendChild(a); // Append the anchor element to the body
+            a.click(); // Simulate a click on the anchor element
+            document.body.removeChild(a); // Remove the anchor element
+        }
+    </script>
+
+</body>
+</html>
