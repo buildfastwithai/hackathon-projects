@@ -1,0 +1,80 @@
+{% extends 'base.html' %}
+{% block start %}
+
+      <div class="container-xxl py-5 bg-primary hero-header mb-5">
+        <div class="container my-5 py-5 px-lg-5">
+          <div class="row g-5 py-5">
+            <div class="col-12 text-center">
+              <h1 class="text-white animated zoomIn">JobJunction: Where Opportunities Meet Aspirations</h1>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Navbar & Hero End -->
+
+    <!--Section: News of the day-->
+    <div class="container">
+      <section class="border-bottom pb-4 mb-5">
+        <div class="row gx-5">
+          <div class="col-md-6 mb-4">
+            <div class="bg-image hover-overlay ripple shadow-2-strong" data-mdb-ripple-color="light">
+              <img src="../static/job.jpg" class="img-fluid" />
+              <a href="#!">
+                <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);"></div>
+              </a>
+            </div>
+          </div>
+
+          <div class="col-md-6 mb-4 text-center">
+            <span class="badge bg-danger px-2 py-1 mb-3">Job of the Week</span>
+            <h4><strong>Jupiter AI Labs : Machine Learning Engineer</strong></h4>
+            <p style="color: rgb(19, 17, 17);">
+              Design, develop, and deploy machine learning models and algorithms to enhance our products, specifically focusing on applications in bot development, computer vision, and chatbot technologies.
+              Collaborate with cross-functional teams to integrate machine learning solutions into existing systems, ensuring seamless API integration and interoperability.
+            </p>
+            <a type="button" class="btn btn-primary" href="https://www.linkedin.com/jobs/view/machine-learning-engineer-at-jupiter-ai-labs-%E2%9C%94-3778193398/?utm_campaign=google_jobs_apply&utm_source=google_jobs_apply&utm_medium=organic&originalSubdomain=in">Read more</a>
+          </div>
+        </div>
+      </section>
+    </div>
+    <!--Section: News of the day-->
+
+    <!-- Main body for Backend-Frontend starts-->
+    <div class="container-xxl py-5">
+      <div class="container px-lg-5">
+        <div class="content-container">
+          <table class="table table-bordered">
+            <thead>
+              <tr>
+                <th scope="col" style="text-align: center; color: rgb(19, 17, 17);">S.No.</th>
+                <th scope="col" style="text-align: center; color: rgb(19, 17, 17);">Company Name</th>
+                <th scope="col" style="text-align: center; color: rgb(19, 17, 17);">Skill Required</th>
+                <th scope="col" style="text-align: center; color: rgb(19, 17, 17);">Apply</th>
+              </tr>
+            </thead>
+
+            {% for job in job_list_all %}
+
+            <tbody>
+              <tr>
+                <th scope="row" style="text-align: center; color: rgb(19, 17, 17);">{{forloop.counter}}</th>
+                <td style="text-align: center; color: rgb(19, 17, 17);">{{job.company_name}}</td>
+                <td style="text-align: center; color: rgb(19, 17, 17); ">{{job.skills}}</td>
+                <td style="text-align: center;"><a href="{{job.apply_link}}">Link</a></td>
+              </tr>
+            </tbody>
+
+            {%endfor%}
+
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Main body for Backend-Frontend End -->
+
+
+
+
+  {%endblock%}
