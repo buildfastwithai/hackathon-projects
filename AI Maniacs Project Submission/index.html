@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Codify - Elevate Your Coding with AI</title>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        body {
+            background: linear-gradient(135deg, #ff4b2b, #ff416c, #833ab4, #4527a0);
+            background-size: 400% 400%;
+            animation: gradientBG 5s ease infinite; 
+            color: #fff;
+            margin: 0;
+        }
+
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        header, nav, footer {
+            background-color: rgba(0, 0, 0, 0.5);
+            color: #fff;
+            padding: 6px;
+            text-align: center;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav img {
+            width: 140px;
+            height: 50px;
+        }
+
+        nav a {
+            color: #fff;
+            padding: 10px 20px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 20px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+            position: relative;
+        }
+
+        nav a:hover {
+            transform: scale(1.2) translateY(-10px);
+            background-color: rgba(255, 221, 87, 0.2); 
+            box-shadow: 0 10px 15px rgba(255, 221, 87, 0.4);
+        }
+
+        .hero {
+            margin-top: 40px;
+            height: 70vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-weight: bold;
+            text-align: center;
+            padding: 0 20px;
+            background: rgba(0, 0, 0, 0.4);
+            border-radius: 10px;
+            border: 3px solid rgba(255, 221, 87, 0.5); 
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            text-transform: uppercase;
+            color: #ffdd57;
+        }
+
+        .hero p {
+            font-size: 1.5rem;
+            margin-top: 20px;
+            line-height: 1.8;
+        }
+
+        .btn {
+            background-color: #ffdd57;
+            color: #333;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            margin-top: 20px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+        }
+
+        .btn:hover {
+            transform: scale(1.2) translateY(-10px);
+            box-shadow: 0 10px 15px rgba(255, 221, 87, 0.4);
+        }
+        
+        .features-content1 {
+            padding: 4rem 2rem;
+            margin-top: 80px;
+            text-align: center;
+            background-color: #bf348780;
+        }
+
+        .features-content1 h1 {
+            font-size: 2.5rem;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        .feature-box1 {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .feature1 {
+            width: 30%;
+            min-width: 280px;
+            padding: 20px;
+            background-color: #f4f4f4;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            text-align: left;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .feature1 h3 {
+            margin-bottom: 15px;
+            color: #ff6347;
+            font-size: 1.5rem;
+        }
+
+        .feature1 p {
+            font-size: 1rem;
+            line-height: 1.6;
+            color: #000000
+        }
+
+        .feature1 .learn-more {
+            margin-top: 15px;
+            color: #ff6347;
+            font-weight: bold;
+            text-decoration: none;
+            position: absolute;
+            bottom: 20px;
+        }
+
+        .feature1:hover {
+            transform: translateY(-5px);
+            transition: 0.3s;
+        }
+
+
+        
+        .features, .testimonials, .feature, .testimonial {
+            background-color: rgba(0, 0, 0, 0.4);
+            border-radius: 10px;
+            padding: 20px;
+        }
+        
+        .features {
+            padding: 3rem 0;
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        .features h2 {
+            margin-bottom: 20px;
+            font-size: 2.5rem;
+            color: #ffdd57;
+        }
+
+        .feature-box {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .feature {
+            width: 30%;
+            min-width: 250px;
+            padding: 20px;
+            background-color: rgba(255, 255, 255, 0.05); 
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            color: #fff;
+        }
+
+        .feature h3 {
+            margin-bottom: 10px;
+            color: #ffdd57;
+            font-size: 1.4rem;
+        }
+
+        .feature p {
+            font-size: 1.1rem;
+        }
+
+        .testimonials {
+            padding: 3rem 0;
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        .testimonials h2 {
+            margin-bottom: 20px;
+            font-size: 2.5rem;
+            color: #ffdd57;
+        }
+
+        .testimonial-box {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .testimonial {
+            width: 30%;
+            min-width: 250px;
+            padding: 20px;
+            background-color: rgba(255, 255, 255, 0.05); 
+            border-radius: 8px;
+            color: #fff;
+        }
+
+        footer {
+            background-color: rgba(0, 0, 0, 0.5);
+            color: #fff;
+            text-align: center;
+            padding: 1.5rem 0;
+            margin-top: 30px;
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero p {
+                font-size: 1.2rem;
+            }
+
+            .feature-box, .testimonial-box {
+                flex-direction: column;
+            }
+
+            .feature, .testimonial {
+                width: 80%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <img src="Blue_and_Pink_Minimalist_Video_Game_Developer_Studio_Logo__1_-removebg-preview.png" alt="logo">
+            <div>
+                <a href="index.html">Home</a>
+              
+                <a href="languages.html">Programming Languages</a>
+                <a href="about-us.html">About Us</a>
+                <a href="contact.html">Contact</a>
+            </div>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <div>
+            <h1>Welcome to Codify</h1>
+            <p>Your all-in-one platform to master coding effortlessly with the power of AI.<br> Practice, learn, and grow with curated resources tailored just for you.</p>
+            <button class="btn" onclick="window.location.href='get_started.html'">Get Started</button>
+        </div>
+    </section>
+    
+    <section class="features-content1">
+        <h1>Explore Our Features</h1>
+        <p>Discover how Codify can transform your coding journey with AI-powered tools and curated content.</p>
+        <div class="feature-box1">
+            <div class="feature1">
+                <h3>AI-Powered Practice Questions</h3>
+                <p>Access personalized coding challenges tailored to your skill level, all generated using advanced AI models for accuracy and relevance.</p>
+       
+            </div>
+            <div class="feature1">
+                <h3>Short Notes & Theory</h3>
+                <p>Dive into concise notes and theoretical explanations that simplify complex concepts, neatly arranged for your convenience.</p>
+             
+            </div>
+            <div class="feature1">
+                <h3>Problem-Solving Assistance</h3>
+                <p>Utilize AI-driven insights to debug your code and overcome challenges swiftly, enhancing your problem-solving skills.</p>
+          
+            </div>
+            <div class="feature1">
+                <h3>Project Guidance</h3>
+                <p>Receive expert advice and AI support for your projects, ensuring you stay on the right track from start to finish.</p>
+              
+            </div>
+            <div class="feature1">
+                <h3>Curated Content</h3>
+                <p>Benefit from well-organized resources, curated using multiple AI models to provide the most accurate and helpful information.</p>
+     
+            </div>
+            <div class="feature1">
+                <h3>Multi-Language Support</h3>
+                <p>Learn and practice coding in various programming languages with content tailored to each language's specifics.</p>
+               
+            </div>
+        </div>
+  
+    <section class="testimonials">
+        <h2>What Users Say</h2>
+        <div class="testimonial-box">
+            <div class="testimonial">
+                <p>"Codify helped me solve complex coding problems with ease. Highly recommended!"</p>
+            </div>
+            <div class="testimonial">
+                <p>"The curated notes and project guidance were exactly what I needed to improve my coding skills."</p>
+            </div>
+            <div class="testimonial">
+                <p>"A fantastic app for any aspiring developer, especially with its AI-powered insights!"</p>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>Copyright &copy; 2024 Codify. All Rights Reserved.</p>
+    </footer>
+</body>
+</html>

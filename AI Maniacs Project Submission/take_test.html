@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Codify Test Platform</title>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        /* Same styles as before */
+        /* linear-gradient(135deg, #ff4b2b, #ff416c, #833ab4, #4527a0); */
+        body {
+            background: rgb(51, 49, 49);
+            background-size: 400% 400%;
+            animation: gradientBG 10s ease infinite;
+            font-family: 'JetBrains Mono', monospace;
+            color: #fff;
+            padding: 20px;
+        }
+
+
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+
+        h1, h2 {
+            text-align: center;
+            color: #ffdd57;
+        }
+
+
+        .test-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: rgba(32, 32, 32, 0.7);
+            border-radius: 8px;
+        }
+
+
+        .test-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+
+        .timer {
+            background-color: #ffdd57;
+            color: #333;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+
+        .questions {
+            margin-top: 30px;
+        }
+
+
+        .question {
+            background-color: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+
+
+        .question h3 {
+            color: #ffdd57;
+        }
+
+
+        .options input[type="radio"] {
+            margin-right: 10px;
+        }
+
+
+        .submit-btn {
+            display: block;
+            background-color: #ffdd57;
+            color: #333;
+            padding: 15px;
+            border-radius: 5px;
+            text-align: center;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: transform 0.3s;
+            width: 200px;
+            margin: 30px auto;
+        }
+
+
+        .submit-btn:hover {
+            transform: scale(1.1);
+        }
+
+
+        .code-editor-container {
+            margin-top: 30px;
+        }
+
+
+        textarea {
+            width: 100%;
+            height: 300px;
+            border-radius: 8px;
+            background-color: rgba(0, 0, 0, 0.9);
+            color: #fff;
+            padding: 10px;
+            font-family: 'JetBrains Mono', monospace;
+            margin-top: 20px;
+        }
+
+
+        .progress-bar {
+            margin: 20px 0;
+            width: 100%;
+            height: 20px;
+            background-color: rgba(255, 255, 255, 0.2);
+            border-radius: 5px;
+        }
+
+
+        .progress-bar-fill {
+            width: 0%;
+            height: 100%;
+            background-color: #ffdd57;
+            border-radius: 5px;
+            transition: width 0.4s;
+        }
+
+
+        .solutions {
+            display: none;
+            background-color: rgba(0, 0, 0, 0.8);
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 30px;
+        }
+
+
+        .solutions h2 {
+            color: #ffdd57;
+        }
+
+
+        .solutions pre {
+            background-color: #484848;
+            padding: 10px;
+            border-radius: 5px;
+        }
+
+
+        .solutions .correct {
+            color: limegreen;
+        }
+
+
+        .solutions .incorrect {
+            color: red;
+        }
+
+
+        .settings {
+            margin-bottom: 30px;
+            background-color: rgba(31, 31, 31, 0.7);
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+        }
+
+
+        .settings select, .settings input {
+            padding: 10px;
+            margin: 10px 0;
+            font-family: 'JetBrains Mono', monospace;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+
+
+    <h1>Welcome to Codify's Coding Test!</h1>
+
+
+    <div class="settings">
+        <h2>Test Settings</h2>
+        <label for="numQuestions">Number of Questions: </label>
+        <select id="numQuestions">
+            <option value="5">5</option>
+            <option value="10">10</option>
+            <option value="15">15</option>
+            <option value="20">20</option>
+            <option value="25">25</option>
+        </select>
+
+
+        <label for="timeLimit">Set Time Limit (minutes): </label>
+        <input type="number" id="timeLimit" min="1" max="60" value="5">
+
+
+        <label for="difficulty">Select Difficulty: </label>
+        <select id="difficulty">
+            <option value="easy">Easy</option>
+            <option value="medium">Medium</option>
+            <option value="hard">Hard</option>
+        </select>
+
+
+        <div class="submit-btn" onclick="startTest()">Start Test</div>
+    </div>
+
+
+    <div class="test-container" id="testContainer" style="display:none;">
+        <div class="test-header">
+            <h2>Test: Coding Challenges</h2>
+            <div class="timer" id="timer">Time Left: 60:00</div>
+        </div>
+
+
+        <div class="questions" id="questionsContainer"></div>
+
+
+        <div class="progress-bar">
+            <div class="progress-bar-fill" id="progressBar"></div>
+        </div>
+
+
+        <div class="submit-btn" onclick="submitTest()">Submit Test</div>
+    </div>
+
+
+    <div class="solutions" id="solutions">
+        <h2>Test Solutions</h2>
+        <div id="solutionContent"></div>
+    </div>
+
+
+    <script>
+        const questions = [
+            { type: 'easy', text: 'What is the output of this JavaScript code?', code: 'console.log(2 + "2");', options: ['"22"', '4', 'NaN'], correct: '"22"', explanation: 'In JavaScript, when you add a number and a string, the number is converted to a string, so 2 + "2" results in "22".' },
+            { type: 'easy', text: 'Which HTML tag is used to create a hyperlink?', options: ['&lt;a&gt;', '&lt;link&gt', '&lt;href&gt'], correct: '&lt;a&gt;', explanation: 'The &lt;a&gt; tag defines a hyperlink, which is used to link from one page to another.' },
+            { type: 'easy', text: 'What is the output of 3 == "3" in JavaScript?', options: ['true', 'false'], correct: 'true', explanation: 'In JavaScript, == performs type coercion, so "3" is converted to 3 before comparison.' },
+            { type: 'easy', text: 'Which CSS property is used to change the background color?', options: ['color', 'background-color', 'font-color'], correct: 'background-color', explanation: 'The "background-color" property in CSS is used to change the background color of an element.' },
+            { type: 'easy', text: 'Which method is used to add an element at the end of an array in JavaScript?', options: ['push()', 'pop()', 'unshift()'], correct: 'push()', explanation: 'The push() method adds one or more elements to the end of an array.' },
+            { type: 'easy', text: 'Which operator is used to assign a value to a variable?', options: ['=', '= =', '= = ='], correct: '=', explanation: 'The "=" operator is used to assign a value to a variable in most programming languages.' },
+            { type: 'easy', text: 'What is the full form of HTML?', options: ['Hyperlinks and Text Markup Language', 'Hyper Text Markup Language', 'Home Tool Markup Language'], correct: 'Hyper Text Markup Language', explanation: 'HTML stands for Hyper Text Markup Language, which is used to create web pages.' },
+            { type: 'easy', text: 'Which language is used for styling web pages?', options: ['HTML', 'CSS', 'JavaScript'], correct: 'CSS', explanation: 'CSS (Cascading Style Sheets) is used to style and layout web pages.' },
+            { type: 'easy', text: 'What does CSS stand for?', options: ['Creative Style Sheets', 'Cascading Style Sheets', 'Computer Style Sheets'], correct: 'Cascading Style Sheets', explanation: 'CSS stands for Cascading Style Sheets, which is used to design and style web pages.' },
+            { type: 'easy', text: 'Which HTML element is used to define an unordered list?', options: ['&lt;ul&gt', '&lt;ol&gt', '&lt;li&gt'], correct: '&lt;ul&gt', explanation: 'The &lt;ul&gt element defines an unordered (bulleted) list in HTML.' },
+            { type: 'easy', text: 'What is the output of this JavaScript code?', code: 'console.log(2 + "2");', options: ['"22"', '4', 'NaN'], correct: '"22"', explanation: 'In JavaScript, when you add a number and a string, the number is converted to a string, so 2 + "2" results in "22".' },
+            { type: 'easy', text: 'Which tag is used to create a line break in HTML?', options: ['&lt;br&gt;', '&lt;break&gt;', '&lt;lb&gt;'], correct: '&lt;br&gt;', explanation: 'The &lt;br&gt; tag is used to insert a line break in HTML.' },
+            { type: 'easy', text: 'What is the output of 3 == "3" in JavaScript?', options: ['true', 'false'], correct: 'true', explanation: 'In JavaScript, == performs type coercion, so "3" is converted to 3 before comparison.' },
+            { type: 'easy', text: 'Which CSS property is used to change the background color?', options: ['color', 'background-color', 'font-color'], correct: 'background-color', explanation: 'The "background-color" property in CSS is used to change the background color of an element.' },
+            { type: 'easy', text: 'Which method is used to add an element at the end of an array in JavaScript?', options: ['push()', 'pop()', 'unshift()'], correct: 'push()', explanation: 'The push() method adds one or more elements to the end of an array.' },
+            { type: 'easy', text: 'Which operator is used to assign a value to a variable?', options: ['=', '= =', '= = ='], correct: '=', explanation: 'The "=" operator is used to assign a value to a variable in most programming languages.' },
+            { type: 'easy', text: 'What is the full form of HTML?', options: ['Hyperlinks and Text Markup Language', 'Hyper Text Markup Language', 'Home Tool Markup Language'], correct: 'Hyper Text Markup Language', explanation: 'HTML stands for Hyper Text Markup Language, which is used to create web pages.' },
+            { type: 'easy', text: 'Which language is used for styling web pages?', options: ['HTML', 'CSS', 'JavaScript'], correct: 'CSS', explanation: 'CSS (Cascading Style Sheets) is used to style and layout web pages.' },
+            { type: 'easy', text: 'What does CSS stand for?', options: ['Creative Style Sheets', 'Cascading Style Sheets', 'Computer Style Sheets'], correct: 'Cascading Style Sheets', explanation: 'CSS stands for Cascading Style Sheets, which is used to design and style web pages.' },
+            { type: 'easy', text: 'Which HTML element is used to display a header?', options: ['&lt;h1&gt', '&lt;header&gt', '&lt;head&gt'], correct: '&lt;h1&gt', explanation: 'The &lt;h1&gt tag is used to define the most important heading in HTML.' },
+            { type: 'easy', text: 'Which HTML attribute is used to define inline styles?', options: ['style', 'class', 'id'], correct: 'style', explanation: 'The "style" attribute is used to define inline styles directly within an HTML tag.' },
+            { type: 'easy', text: 'What is the correct syntax for linking an external CSS file?', options: ['&lt;link rel="stylesheet" href="styles.css"&gt;', '&lt;style src="styles.css"&gt;', '&lt;css src="styles.css"&gt;'], correct: '&lt;link rel="stylesheet" href="styles.css"&gt;', explanation: 'The &lt;link&gt; tag with rel="stylesheet" and href attribute is used to link an external CSS file.' },
+            { type: 'easy', text: 'Which symbol is used to select an ID in CSS?', options: ['#', '.', '*'], correct: '#', explanation: 'In CSS, the # symbol is used to target an element by its ID.' },
+            { type: 'easy', text: 'Which tag is used to create an ordered list in HTML?', options: ['&lt;ol&gt;', '&lt;ul&gt;', '&lt;li&gt;'], correct: '&lt;ol&gt;', explanation: 'The &lt;ol&gt; tag defines an ordered (numbered) list in HTML.' },
+            { type: 'easy', text: 'Which HTML element is used to display a paragraph?', options: ['&lt;p&gt;', '&lt;paragraph&gt;', '&lt;pg&gt;'], correct: '&lt;p&gt;', explanation: 'The &lt;p&gt; tag is used to define a paragraph in HTML.' },
+            { type: 'easy', text: 'Which of the following is the correct syntax for an array in JavaScript?', options: ['[1, 2, 3]', '{1, 2, 3}', '(1, 2, 3)'], correct: '[1, 2, 3]', explanation: 'Square brackets are used to define an array in JavaScript.' },
+            { type: 'easy', text: 'Which method is used to remove the last element from an array in JavaScript?', options: ['pop()', 'shift()', 'remove()'], correct: 'pop()', explanation: 'The pop() method removes the last element from an array.' },
+            { type: 'easy', text: 'How do you write a comment in JavaScript?', options: ['// This is a comment', '&lt;!-- This is a comment --&gt;', '# This is a comment'], correct: '// This is a comment', explanation: 'In JavaScript, single-line comments start with //.' },
+            { type: 'easy', text: 'What is the correct way to write a function in JavaScript?', options: ['function myFunction()', 'def myFunction()', 'function:myFunction()'], correct: 'function myFunction()', explanation: 'In JavaScript, functions are declared using the "function" keyword followed by the function name.' },
+            { type: 'easy', text: 'What is the output of the following code?', code: 'console.log(5 &gt; 3 && 2 &lt; 4);', options: ['true', 'false', 'undefined'], correct: 'true', explanation: 'Both conditions are true, so the && operator returns true.' },
+            { type: 'easy', text: 'Which tag is used to insert an image in HTML?', options: ['&lt;img&gt;', '&lt;image&gt;', '&lt;src&gt;'], correct: '&lt;img&gt;', explanation: 'The &lt;img&gt; tag is used to embed images in HTML.' },
+            { type: 'easy', text: 'Which symbol is used to target a class in CSS?', options: ['.', '#', '*'], correct: '.', explanation: 'In CSS, the dot (.) is used to target an element by its class.' },
+            { type: 'easy', text: 'What is the result of the following JavaScript code?', code: 'console.log(typeof "hello");', options: ['string', 'number', 'boolean'], correct: 'string', explanation: 'The typeof operator returns "string" for string values.' },
+            { type: 'easy', text: 'Which attribute is used in HTML to define a unique identifier for an element?', options: ['id', 'class', 'name'], correct: 'id', explanation: 'The "id" attribute is used to define a unique identifier for an HTML element.' },
+            { type: 'easy', text: 'Which property is used to change the text color in CSS?', options: ['color', 'background-color', 'text-color'], correct: 'color', explanation: 'The "color" property in CSS is used to change the text color of an element.' },
+
+            // Medium questions
+            { type: 'medium', text: 'What is the output of the following Python code?', code: 'x = [1, 2, 3]\ny = x\ny.append(4)\nprint(x)', options: ['[1, 2, 3]', '[1, 2, 3, 4]', '[4]'], correct: '[1, 2, 3, 4]', explanation: 'In Python, lists are mutable. When y = x, both variables refer to the same list object.' },
+            { type: 'medium', text: 'Which of the following is a mutable data type in Python?', options: ['tuple', 'string', 'list'], correct: 'list', explanation: 'Lists in Python are mutable, which means they can be modified after creation.' },
+            { type: 'medium', text: 'What will be the output of the following code?', code: 'def func(x=[]):\n    x.append(1)\n    return x\nprint(func())\nprint(func())', options: ['[1], [1]', '[1], [1, 1]', 'None, None'], correct: '[1], [1, 1]', explanation: 'Default mutable arguments can persist changes between function calls.' },
+            { type: 'medium', text: 'What is the correct syntax for defining a class in Python?', options: ['class MyClass:', 'MyClass():', 'def MyClass:'], correct: 'class MyClass:', explanation: 'In Python, the "class" keyword is used to define a class.' },
+            { type: 'medium', text: 'Which of the following is used to handle exceptions in Python?', options: ['try', 'except', 'finally', 'All of the above'], correct: 'All of the above', explanation: 'try, except, and finally are used for exception handling in Python.' },
+            { type: 'medium', text: 'What will be the output of the following Python code?', code: 'x = {1, 2, 3}\nx.add(4)\nx.add(3)\nprint(len(x))', options: ['3', '4', 'Error'], correct: '4', explanation: 'Sets in Python contain unique elements. Adding 3 twice does not change its length.' },
+            { type: 'medium', text: 'What does the _init_ method do in Python classes?', options: ['Initializes the class object', 'Deletes the object', 'Runs after every method'], correct: 'Initializes the class object', explanation: '_init_ initializes an object’s attributes when an instance of the class is created.' },
+            { type: 'medium', text: 'How can you concatenate two tuples in Python?', options: ['Using the + operator', 'Using the append() method', 'Using the add() method'], correct: 'Using the + operator', explanation: 'Tuples can be concatenated using the + operator in Python.' },
+            { type: 'medium', text: 'What is the output of the following code?', code: 'print(list(range(1, 10, 2)))', options: ['[1, 3, 5, 7, 9]', '[1, 2, 3, 4, 5]', '[1, 10, 2]'], correct: '[1, 3, 5, 7, 9]', explanation: 'range(1, 10, 2) generates numbers from 1 to 9 with a step of 2.' },
+            { type: 'medium', text: 'How do you access the last element of a list in Python?', options: ['list[-1]', 'list[len(list)]', 'list[last]'], correct: 'list[-1]', explanation: 'Negative indexing in Python allows you to access elements from the end of a list.' },
+            { type: 'medium', text: 'What is the output of the following code?', code: 'a = 5\nb = 10\na, b = b, a\nprint(a, b)', options: ['5 10', '10 5', 'Error'], correct: '10 5', explanation: 'Python allows swapping variables in one line using a, b = b, a.' },
+            { type: 'medium', text: 'What does the strip() method do in Python?', options: ['Removes all whitespace', 'Removes leading and trailing whitespace', 'Removes specific characters'], correct: 'Removes leading and trailing whitespace', explanation: 'The strip() method removes leading and trailing whitespace by default.' },
+            { type: 'medium', text: 'What is the output of the following Python code?', code: 'x = [1, 2, 3, 4]\nprint(x[1:3])', options: ['[1, 2]', '[2, 3]', '[3, 4]'], correct: '[2, 3]', explanation: 'The slice x[1:3] returns elements at index 1 and 2.' },
+            { type: 'medium', text: 'What will be the output of this code?', code: 'print("Hello " * 3)', options: ['Hello Hello Hello ', 'Hello3', 'Error'], correct: 'Hello Hello Hello ', explanation: 'In Python, multiplying a string by an integer repeats the string that many times.' },
+            { type: 'medium', text: 'How do you convert a string to lowercase in Python?', options: ['toLower()', 'lower()', 'str.lowercase()'], correct: 'lower()', explanation: 'The lower() method converts all characters in a string to lowercase.' },
+            { type: 'medium', text: 'What is the output of the following Python code?', code: 'print(type(3.14))', options: ['<class \'float\'>', '<class \'int\'>', '<class \'double\'>'], correct: '<class \'float\'>', explanation: 'In Python, decimal numbers are represented by the float type.' },
+            { type: 'medium', text: 'What is the difference between a shallow copy and a deep copy in Python?', options: ['Shallow copies copy references, deep copies copy objects', 'No difference', 'Shallow copies are faster'], correct: 'Shallow copies copy references, deep copies copy objects', explanation: 'Shallow copies only copy references to objects, while deep copies duplicate the objects themselves.' },
+            { type: 'medium', text: 'Which of the following methods is used to check if a key exists in a dictionary?', options: ['has_key()', 'in', 'exists()'], correct: 'in', explanation: 'The "in" keyword is used to check if a key exists in a dictionary in Python.' },
+            { type: 'medium', text: 'What will be the output of the following code?', code: 'x = {1: "one", 2: "two"}\nx[3] = "three"\nprint(x)', options: ['{1: "one", 2: "two", 3: "three"}', '{1: "one", 2: "two"}', 'Error'], correct: '{1: "one", 2: "two", 3: "three"}', explanation: 'You can add new key-value pairs to a dictionary by assigning a new key.' },
+            { type: 'medium', text: 'Which of the following is not a valid Python keyword?', options: ['class', 'finally', 'function'], correct: 'function', explanation: 'The word "function" is not a keyword in Python; Python uses "def" to define functions.' },
+            { type: 'medium', text: 'What is the output of the following code?', code: 'x = [1, 2, 3]\nprint(x * 2)', options: ['[1, 2, 3, 1, 2, 3]', '[1, 2, 3, 3]', '[2, 4, 6]'], correct: '[1, 2, 3, 1, 2, 3]', explanation: 'Multiplying a list by an integer repeats the list elements.' },
+            { type: 'medium', text: 'How do you remove an element from a list in Python by value?', options: ['del list[index]', 'remove()', 'pop()'], correct: 'remove()', explanation: 'The remove() method removes the first occurrence of the specified value from the list.' },
+            { type: 'medium', text: 'What will be the output of this code?', code: 'x = "abcde"\nprint(x[::2])', options: ['abc', 'ace', 'abd'], correct: 'ace', explanation: 'The slice x[::2] skips every second character, resulting in "ace".' },
+            { type: 'medium', text: 'How can you combine a list of strings into a single string in Python?', options: ['join()', 'concatenate()', 'append()'], correct: 'join()', explanation: 'The join() method concatenates a list of strings into a single string with a separator.' },
+            { type: 'medium', text: 'What is the output of the following code?', code: 'x = [1, 2, 3]\nprint(len(x))', options: ['2', '3', 'Error'], correct: '3', explanation: 'The len() function returns the number of elements in the list.' },
+            
+            
+            // Hard questions
+            { type: 'hard', text: 'What will be the output of the following Python code?', code: 'def outer():\n    x = 10\n    def inner():\n        nonlocal x\n        x = 20\n    inner()\n    return x\nprint(outer())', options: ['10', '20', 'Error'], correct: '20', explanation: 'The nonlocal keyword modifies the variable in the outer (non-global) scope.' },
+            { type: 'hard', text: 'How would you sort a dictionary by its values in Python?', options: ['sorted(d.values())', 'sorted(d.items(), key=lambda x: x[1])', 'sorted(d.keys())'], correct: 'sorted(d.items(), key=lambda x: x[1])', explanation: 'sorted(d.items(), key=lambda x: x[1]) sorts a dictionary by its values.' },
+            { type: 'hard', text: 'What is the time complexity of accessing an element in a dictionary in Python?', options: ['O(1)', 'O(log n)', 'O(n)'], correct: 'O(1)', explanation: 'Accessing an element in a dictionary by key is O(1) due to its hash-based implementation.' },
+            { type: 'hard', text: 'What is the output of the following code?', code: 'a = (1, 2)\nb = (3, 4)\nprint(a + b)', options: ['(1, 2, 3, 4)', '[1, 2, 3, 4]', 'TypeError'], correct: '(1, 2, 3, 4)', explanation: 'In Python, tuples can be concatenated using the + operator.' },
+            { type: 'hard', text: 'Which of the following decorators can be used to define a class method in Python?', options: ['@classmethod', '@staticmethod', '@property', 'All of the above'], correct: '@classmethod', explanation: 'The @classmethod decorator defines a method that is bound to the class and not the instance.' },
+            { type: 'hard', text: 'What will be the output of this Python code?', code: 'print({1, 2, 3} & {2, 3, 4})', options: ['{1, 2, 3, 4}', '{2, 3}', '{1}', 'Error'], correct: '{2, 3}', explanation: 'The & operator returns the intersection of two sets in Python.' },
+            { type: 'hard', text: 'Which function is used to convert a string into an integer in Python?', options: ['int()', 'float()', 'str()'], correct: 'int()', explanation: 'The int() function converts a string or other types to an integer in Python.' },
+            { type: 'hard', text: 'What will be the output of the following code?', code: 'x = [1, 2]\ny = x[:]\ny.append(3)\nprint(x, y)', options: ['[1, 2], [1, 2, 3]', '[1, 2, 3], [1, 2, 3]', '[1, 2], [3]'], correct: '[1, 2], [1, 2, 3]', explanation: 'x[:] creates a shallow copy of the list, so modifying y does not affect x.' },
+            { type: 'hard', text: 'Which of the following is true about Python’s Global Interpreter Lock (GIL)?', options: ['It prevents multiple threads from executing simultaneously', 'It speeds up multi-threading', 'It is only present in Python 3'], correct: 'It prevents multiple threads from executing simultaneously', explanation: 'The GIL ensures that only one thread executes Python bytecode at a time.' },
+            { type: 'hard', text: 'What will be the output of this Python code?', code: 'a = [[0] * 3] * 3\na[0][0] = 1\nprint(a)', options: ['[[1, 0, 0], [0, 0, 0], [0, 0, 0]]', '[[1, 0, 0], [1, 0, 0], [1, 0, 0]]', '[[0, 0, 0], [0, 0, 0], [0, 0, 0]]'], correct: '[[1, 0, 0], [1, 0, 0], [1, 0, 0]]', explanation: 'The * operator creates shallow copies, so all rows in the 2D list refer to the same list.' },
+            { type: 'hard', text: 'What will be the output of the following code?', code: 'def f(x):\n    return x * x\nresult = list(map(f, [1, 2, 3]))\nprint(result)', options: ['[1, 4, 9]', '[1, 2, 3]', '[f(1), f(2), f(3)]'], correct: '[1, 4, 9]', explanation: 'map applies the function f to each element in the list, returning a new list.' },
+            { type: 'hard', text: 'What is the result of evaluating the following expression in Python?', code: 'print(0.1 + 0.2 == 0.3)', options: ['True', 'False', 'Error'], correct: 'False', explanation: 'Due to floating-point precision, 0.1 + 0.2 does not exactly equal 0.3.' },
+            { type: 'hard', text: 'How can you catch multiple exceptions in Python?', options: ['Use multiple except blocks', 'Use a tuple in a single except block', 'Use a try-except-finally block'], correct: 'Use a tuple in a single except block', explanation: 'You can catch multiple exceptions by passing them as a tuple to a single except block.' },
+            { type: 'hard', text: 'Which of the following is NOT a valid way to declare an empty set in Python?', options: ['set()', '{}', 'Both are valid'], correct: '{}', explanation: '{} creates an empty dictionary, not a set; to create an empty set, use set().' },
+            { type: 'hard', text: 'What will be the output of the following code?', code: 'a = [1, 2, 3]\nprint(a[::-1])', options: ['[3, 2, 1]', '[1, 2, 3]', 'Error'], correct: '[3, 2, 1]', explanation: 'The slice [::-1] reverses the list.' },
+            { type: 'hard', text: 'What is the output of this Python code?', code: 'x = [1, 2, 3]\nfor i in x:\n    x.remove(i)\nprint(x)', options: ['[1, 2]', '[2, 3]', '[2]'], correct: '[2]', explanation: 'Removing elements while iterating causes the loop to skip items. Only the second element remains.' },
+            { type: 'hard', text: 'What is the difference between deep and shallow copy in Python?', options: ['Deep copy duplicates objects recursively, shallow copy only copies references', 'No difference', 'Shallow copy is slower'], correct: 'Deep copy duplicates objects recursively, shallow copy only copies references', explanation: 'Shallow copy only copies references, deep copy creates entirely new copies of the objects.' },
+            { type: 'hard', text: 'What will be the output of this code?', code: 'def f():\n    for i in range(3):\n        yield i\nprint(list(f()))', options: ['[0, 1, 2]', '[0, 1, 2, 3]', 'Error'], correct: '[0, 1, 2]', explanation: 'The yield statement produces a generator, which is converted into a list in this example.' },
+            { type: 'hard', text: 'What does the "with" statement do in Python?', options: ['Creates a context for managing resources', 'Starts a new block of code', 'Defines a function'], correct: 'Creates a context for managing resources', explanation: 'The "with" statement simplifies exception handling by encapsulating resource management code.' },
+            { type: 'hard', text: 'Which of the following correctly imports the module "math" and uses its sqrt() function?', options: ['import math\nmath.sqrt(9)', 'from math import sqrt\nsqrt(9)', 'Both'], correct: 'Both', explanation: 'You can either import the entire module or import specific functions from it.' },
+            { type: 'hard', text: 'What will be the output of the following Python code?', code: 'print(bool([]), bool({}), bool(()), bool(None))', options: ['False, False, False, False', 'True, True, True, True', 'Error'], correct: 'False, False, False, False', explanation: 'Empty lists, dictionaries, tuples, and None all evaluate to False in Python.' },
+            { type: 'hard', text: 'What is the output of the following Python code?', code: 'def func(x=[]):\n    x.append(1)\n    return x\nprint(func(), func())', options: ['[1], [1]', '[1], [1, 1]', '[1], [1, 1, 1]'], correct: '[1], [1, 1]', explanation: 'The default argument x=[] persists between function calls, so the second call appends to the same list.' },
+            { type: 'hard', text: 'Which of the following functions is used to iterate over two lists simultaneously in Python?', options: ['enumerate()', 'zip()', 'map()'], correct: 'zip()', explanation: 'The zip() function pairs elements from two lists and allows iteration over both.' },
+            { type: 'hard', text: 'What is the result of running this Python code?', code: 'a = [1, 2, 3]\nb = a\nb[0] = 10\nprint(a)', options: ['[1, 2, 3]', '[10, 2, 3]', '[1, 10, 3]'], correct: '[10, 2, 3]', explanation: 'Since b references the same list as a, changes to b affect a as well.' },
+            { type: 'hard', text: 'What will be the output of the following code?', code: 'print(len("Hello\\nWorld"))', options: ['10', '11', '12'], correct: '11', explanation: 'The newline character \\n counts as a single character, so the total length is 11.' }
+];
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            
+        
+
+
+        let selectedQuestions = [];
+        let timeRemaining = 0;
+        let timerInterval = null;
+
+
+        function startTest() {
+            const numQuestions = document.getElementById('numQuestions').value;
+            const difficulty = document.getElementById('difficulty').value;
+            const timeLimit = document.getElementById('timeLimit').value;
+
+
+            // Filter questions by difficulty
+            const filteredQuestions = questions.filter(q => q.type === difficulty);
+
+
+            // Randomly select questions
+            selectedQuestions = filteredQuestions.slice(0, numQuestions);
+
+
+            // Set up timer
+            timeRemaining = timeLimit * 60;
+            timerInterval = setInterval(updateTimer, 1000);
+
+
+            // Show test container and render questions
+            document.getElementById('testContainer').style.display = 'block';
+            renderQuestions();
+
+
+            // Hide settings
+            document.querySelector('.settings').style.display = 'none';
+        }
+
+
+        function updateTimer() {
+            if (timeRemaining <= 0) {
+                clearInterval(timerInterval);
+                submitTest();
+            } else {
+                timeRemaining--;
+                const minutes = Math.floor(timeRemaining / 60);
+                const seconds = timeRemaining % 60;
+                document.getElementById('timer').innerText = `Time Left: ${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
+            }
+        }
+
+
+        function renderQuestions() {
+            const questionsContainer = document.getElementById('questionsContainer');
+            questionsContainer.innerHTML = '';
+
+
+            selectedQuestions.forEach((question, index) => {
+                const questionElem = document.createElement('div');
+                questionElem.classList.add('question');
+                questionElem.innerHTML = `
+                    <h3>Question ${index + 1}: ${question.text}</h3>
+                    ${question.code ? `<pre>${question.code}</pre>` : ''}
+                    <div class="options">
+                        ${question.options.map(option => `
+                            <label>
+                                <input type="radio" name="question-${index}" value="${option}">
+                                ${option}
+                            </label><br/>
+                        `).join('')}
+                    </div>
+                `;
+                questionsContainer.appendChild(questionElem);
+            });
+
+
+            updateProgressBar(0);
+        }
+
+
+        function submitTest() {
+            const solutionContainer = document.getElementById('solutionContent');
+            solutionContainer.innerHTML = '';
+
+
+            selectedQuestions.forEach((question, index) => {
+                const selectedOption = document.querySelector(`input[name="question-${index}"]:checked`);
+
+
+                if (selectedOption) {
+                    const resultText = selectedOption.value === question.correct ? 'Correct' : 'Incorrect';
+                    solutionContainer.innerHTML += `
+                        <h3>Question ${index + 1}: ${question.text}</h3>
+                        ${question.code ? `<pre>${question.code}</pre>` : ''}
+                        <p class="${resultText === 'Correct' ? 'correct' : 'incorrect'}">
+                            Your Answer: ${selectedOption.value} - ${resultText}
+                        </p>
+                        <p>Explanation: ${question.explanation}</p>
+                    `;
+                } else {
+                    solutionContainer.innerHTML += `
+                        <h3>Question ${index + 1}: ${question.text}</h3>
+                        ${question.code ? `<pre>${question.code}</pre>` : ''}
+                        <p class="incorrect">You did not answer this question.</p>
+                        <p>Explanation: ${question.explanation}</p>
+                    `;
+                }
+            });
+
+
+            document.getElementById('solutions').style.display = 'block';
+        }
+
+
+        function updateProgressBar(progress) {
+            document.getElementById('progressBar').style.width = `${progress}%`;
+        }
+    </script>
+
+
+</body>
+</html>
+
+
+

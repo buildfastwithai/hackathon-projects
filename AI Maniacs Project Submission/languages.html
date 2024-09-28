@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Languages - Codify</title>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        body {
+            background: linear-gradient(135deg, #ff4b2b, #ff416c, #833ab4, #4527a0);
+            background-size: 400% 400%;
+            animation: gradientBG 5s ease infinite;
+            color: #fff;
+            margin: 0;
+        }
+
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        header, nav, footer {
+            background-color: rgba(0, 0, 0, 0.5);
+            color: #fff;
+            padding: 6px;
+            text-align: center;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav img {
+            width: 140px;
+            height: 50px;
+        }
+
+        nav a {
+            color: #fff;
+            padding: 10px 20px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 20px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+        }
+
+        nav a:hover {
+            transform: scale(1.2) translateY(-10px);
+            background-color: rgba(255, 221, 87, 0.2);
+            box-shadow: 0 10px 15px rgba(255, 221, 87, 0.4);
+        }
+
+        footer {
+            background-color: rgba(0, 0, 0, 0.5);
+            color: #fff;
+            text-align: center;
+            padding: 1.5rem 0;
+        }
+
+        .languages-content {
+            padding: 4rem 2rem;
+            margin-top: 80px;
+            text-align: center;
+        }
+
+        .languages-content h1 {
+            font-size: 2.5rem;
+            color: #ffdd57;
+            margin-bottom: 20px;
+        }
+
+        .language-list {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .language {
+            width: 20%;
+            min-width: 150px;
+            padding: 20px;
+            background-color: rgba(255, 255, 255, 0.05);
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+            text-align: center;
+        }
+
+        .language img {
+            width: 60px;
+            margin-bottom: 10px;
+        }
+
+        .language h3 {
+            font-size: 1.2rem;
+            color: #ffdd57;
+        }
+
+        @media (max-width: 768px) {
+            .language {
+                width: 40%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <img src="Blue_and_Pink_Minimalist_Video_Game_Developer_Studio_Logo__1_-removebg-preview.png" alt="logo">
+            <div>
+                <a href="index.html">Home</a>
+                <a href="languages.html">Programming Languages</a>
+                <a href="about-us.html">About Us</a>
+                <a href="contact.html">Contact</a>
+            </div>
+        </nav>
+    </header>
+
+    <section class="languages-content">
+        <h1>Programming Languages Supported</h1>
+        <div class="language-list">
+            <div class="language">
+                <img src="python-logo-only.png" alt="Python">
+                <h3>Python</h3>
+            </div>
+            <div class="language">
+                <img src="java-script.png" title="java icons" alt="JavaScript">
+                <h3>JavaScript</h3>
+            </div>
+            <div class="language">
+                <img src="java.png" alt="Java">
+                <h3>Java</h3>
+            </div>
+            <div class="language">
+                <img src="c-.png" alt="C++">
+                <h3>C++</h3>
+            </div>
+            <div class="language">
+                <img src="C.jpg" alt="C">
+                <h3>C</h3>
+            </div>
+            <div class="language">
+                <img src="Kotlin.png" alt="Kotlin">
+                <h3>Kotlin</h3>
+            </div>
+            <div class="language">
+                <img src="HTML.png" alt="HTML">
+                <h3>HTML</h3>
+            </div>
+
+            
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2024 Codify. All Rights Reserved.</p>
+    </footer>
+</body>
+</html>
