@@ -14,6 +14,7 @@ Many learners struggle with staying motivated while reading dense, text-heavy ma
 ## Backend Setup
 - In Backend Folder You need to download the dataset of images Collection
 - Backend -> dataset -> english set in this format
+- link dataset - https://drive.proton.me/urls/EYC8KE7S84#FmDZysBlWdi5
 - AFTER
 
 # Installation Backend
@@ -28,12 +29,13 @@ Many learners struggle with staying motivated while reading dense, text-heavy ma
 
 ## install the app 
 # First its neccessary proper to set up flutter
+
 - download flutter and set up
 # commands
 -- "flutter clean"
+
 -- "flutter pub get"
 
-  ![image](https://github.com/user-attachments/assets/e6285ad0-ddeb-46c4-858b-1545fa859678)
 
 # api setup  
 - In constant.dart file : "http://.... app.py paste"
@@ -44,12 +46,37 @@ Many learners struggle with staying motivated while reading dense, text-heavy ma
 # Build the apk File
 - firstly project name change to "preception" because during building apk its finds the proper path
 # commands
+
 -- "flutter build apk"
+---
 
-## App LOGO
-![image](https://github.com/user-attachments/assets/fd591180-2f28-41b9-b4a2-c932ddb6f6d0)
+## 💻 How It Works
 
-## App Interface
-![WhatsApp Image 2024-09-28 at 1 17 14 AM](https://github.com/user-attachments/assets/ffb2d087-b5b9-4a5b-a15d-f6e8d4812b75)
+1. *Text Input*: Users can input text from any source (books, PDFs, articles).
+2. *Context Analysis*: The text is analyzed using NLP to understand its context, tone, and key themes.
+3. *Video Generation*: Using MoviePy, relevant visuals and animations are generated to reflect the text’s meaning.
+4. *Text-to-Speech*: The text is narrated using gTTS/pyttsx3, providing an immersive audio experience.
+5. *Final Output*: The generated video, complete with visuals and narration, is delivered to the user.
+
+---
+
+## 🚀 Key Features
+- *AI-Powered Video Generation*: Converts text into dynamic, visually engaging videos.
+- *Text-to-Speech Narration*: Provides audio narration synchronized with visual content for an immersive learning experience.
+- *Multi-Sensory Engagement*: Engages learners through visual, auditory, and contextual formats.
+- *Supports Diverse Learning Styles*: Tailored content for visual, auditory, and kinesthetic learners.
+- *Fresh Perspectives*: Each video generation offers a new interpretation of the content, keeping learning fresh and exciting.
+
+---
+
+## 🔧 Technologies Used
+- *Python*: Backend processing and logic
+- *Flask*: Lightweight framework for web deployment
+- *MoviePy*: Video generation and editing
+- *gTTS* & *pyttsx3*: Text-to-speech libraries
+- *Natural Language Processing (NLP)*: For contextual analysis of text
+
+---
+
 
 
