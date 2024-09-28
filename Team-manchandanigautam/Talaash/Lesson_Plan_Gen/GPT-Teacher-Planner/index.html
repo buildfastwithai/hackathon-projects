@@ -1,0 +1,65 @@
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title> Custom Dropdown Select Menu </title>
+        <link href="https://uploads-ssl.webflow.com/646478aef940eff8137eb310/css/wardrobe-7321c2.webflow.216b2ff4e.css" rel="stylesheet" type="text/css">
+
+
+    </head>
+    <body class="gpt-body" style="background:url(https://auth.tdschool.org/auth/resources/kg5ut/login/thedigitalschool/img/thedigitalschool-bg.png)">
+    <div data-animation="default" data-collapse="medium" data-duration="400" data-easing="ease" data-easing2="ease" role="banner" class="gpt-navbar w-nav" style="background-color:#e7b13c"><div class="gpt-nav w-container"><a href="#" class="w-nav-brand"><img src="https://uploads-ssl.webflow.com/646478aef940eff8137eb310/6489686fd5ba2aed4b2c5ece_logo.png" loading="lazy" sizes="(max-width: 479px) 85vw, (max-width: 628px) 87vw, 547px" srcset="https://uploads-ssl.webflow.com/646478aef940eff8137eb310/6489686fd5ba2aed4b2c5ece_logo-p-500.png 500w, https://uploads-ssl.webflow.com/646478aef940eff8137eb310/6489686fd5ba2aed4b2c5ece_logo.png 547w" alt=""></a><nav role="navigation" class="w-nav-menu"><a href="#" class="hidden w-nav-link" style="max-width: 940px;">Home</a><a href="#" class="hidden w-nav-link" style="max-width: 940px;">About</a><a href="#" class="hidden w-nav-link" style="max-width: 940px;">Contact</a></nav><div class="w-nav-button" style="-webkit-user-select: text;" aria-label="menu" role="button" tabindex="0" aria-controls="w-nav-overlay-0" aria-haspopup="menu" aria-expanded="false"><div class="w-icon-nav-menu"></div></div></div><div class="w-nav-overlay" data-wf-ignore="" id="w-nav-overlay-0"></div></div>
+
+    <div class="container flex">
+        <div class="form-wrapper">
+
+            <div class="form-block w-form">
+                <form method="post" enctype="multipart/form-data" class="form-block">
+                    <label for="lesson_title" class="form-label">Lesson Title:</label>
+                    <input type="text" id="lesson_title" name="lesson_title" class="form-txt-field w-input">
+
+                    <label for="subject" class="form-label">Subject:</label>
+                    <input type="text" id="subject" name="subject" class="form-txt-field w-input">
+
+                    <label for="grade" class="form-label">Grade:</label>
+                    <input type="number" id="grade" min="1" max="13" name="grade" class="form-txt-field w-input">
+
+                    <label for="duration" class="form-label">Duration:</label>
+                    <input type="number" id="duration" min="1" name="duration" class="form-txt-field w-input">
+
+                    <label for="key_vocabulary" class="form-label">Key Vocabulary:</label>
+                    <!--<input type="text" id="key_vocabulary" name="key_vocabulary" class="form-txt-field w-input">-->
+                    <input type="text" id="key_vocabulary" name="key_vocabulary" placeholder="Enter tags separated by commas" class="form-txt-field w-input">
+                    <label class="form-label">supporting materials and resources:</label>
+                    <!--<input type="text" id="supporting_materials_and_resources" name="supporting_materials_and_resources"><br>-->
+                    <input type="checkbox" name="supporting_materials_and_resources" value="Video" > Video
+                    <input type="checkbox" name="supporting_materials_and_resources" value="Laptops"> Laptops
+                    <input type="checkbox" name="supporting_materials_and_resources" value="Microsoft Office"> Microsoft Office
+                    <input type="checkbox" name="supporting_materials_and_resources" value="Live worksheet"> Live worksheet
+                    <input type="checkbox" name="supporting_materials_and_resources" value="Smart Board"> Smart Board
+                    <input type="checkbox" name="supporting_materials_and_resources" value="tablets"> tablets
+                    <input type="checkbox" name="supporting_materials_and_resources" value="Online Educational Resources"> Online Educational Resources
+                    <input type="checkbox" name="supporting_materials_and_resources" value="TDS LMS"> TDS LMS
+                    <input type="checkbox" id="supporting_materials_and_resources_other" name="supporting_materials_and_resources_other" value="Other"> Other
+                    <input type="text" id="other_tag" name="other_tag" placeholder="Enter a new tag" style="display: none;"> <br>
+                    <input type="submit" value="Submit" class="form-submit-btn w-button">
+                </form>
+            </div>
+        </div>
+    </div>
+    <!-- JavaScript -->
+    <script>
+        const otherCheckbox = document.getElementById("supporting_materials_and_resources_other");
+        const otherTagInput = document.getElementById("other_tag");
+
+        otherCheckbox.addEventListener("change", function() {
+            if (otherCheckbox.checked) {
+              otherTagInput.style.display = "block";
+            } else {
+              otherTagInput.style.display = "none";
+            }
+        });
+    </script>
+    </body>
+</html>

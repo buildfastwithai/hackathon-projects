@@ -1,0 +1,760 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>AI Quiz Generator</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css">
+  <style>
+    :root {
+      --image-width: 80%; /* Default image width, change this value to adjust the size */
+    }
+    .question {
+      margin-bottom: 50px;
+    }
+    .submit-quiz {
+        float: right;
+    }
+    button {
+      margin-left: 20px;
+    }
+    .loading {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    #quiz-container {
+      margin-bottom: 50px;
+    }
+    .header-img {
+      width: var(--image-width); /* Use CSS variable for width */
+      margin-top: 20px; /* Add some space at the top */
+      display: block; /* Makes it easier to center if needed */
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .container-fluid {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 30px;
+    }
+    .image-container {
+      flex: 1;
+      margin-right: 20px;
+    }
+    .quiz-container {
+      flex: 2;
+    }
+    .back-to-chatbot {
+      margin-top: 20px;
+    }
+
+    /* Toggle button styles */
+    .toggle-container {
+      display: flex;
+      justify-content: flex-end;
+      margin-top: 20px;
+      margin-right:20px;
+    }
+
+    .switch {
+      position: relative;
+      display: inline-block;
+      width: 60px;
+      height: 34px;
+    }
+
+    .switch input {
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+
+    .slider {
+      position: absolute;
+      cursor: pointer;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: #ccc;
+      -webkit-transition: .4s;
+      transition: .4s;
+    }
+
+    .slider:before {
+      position: absolute;
+      content: "";
+      height: 26px;
+      width: 26px;
+      left: 4px;
+      bottom: 4px;
+      background-color: white;
+      -webkit-transition: .4s;
+      transition: .4s;
+    }
+
+    input:checked + .slider {
+      background-color: #2196F3;
+    }
+
+    input:focus + .slider {
+      box-shadow: 0 0 1px #2196F3;
+    }
+
+    input:checked + .slider:before {
+      -webkit-transform: translateX(26px);
+      -ms-transform: translateX(26px);
+      transform: translateX(26px);
+    }
+
+    .slider.round {
+      border-radius: 34px;
+    }
+
+    .slider.round:before {
+      border-radius: 50%;
+    }
+
+    /* Dark mode styles */
+    .dark-mode {
+      background-color: #333;
+      color: #fff;
+    }
+
+    .dark-mode .card {
+      background-color: #444;
+      color: #fff;
+    }
+
+    .dark-mode .list-group-item {
+      background-color: #444;
+      color: #fff;
+      border-color: #555;
+    }
+
+    .dark-mode .badge-success {
+      background-color: #28a745;
+    }
+
+    .dark-mode .btn-primary {
+      background-color: #007bff;
+      border-color: #007bff;
+    }
+
+    .dark-mode .btn-primary:hover {
+      background-color: #0056b3;
+      border-color: #0056b3;
+    }
+
+    .dark-mode .btn-danger {
+      background-color: #dc3545;
+      border-color: #dc3545;
+    }
+
+    .dark-mode .btn-danger:hover {
+      background-color: #c82333;
+      border-color: #bd2130;
+    }
+  </style>
+</head>
+<body>
+  <div class="container-fluid">
+    <div class="toggle-container">
+      <label class="switch">
+        <input type="checkbox" id="toggle-mode">
+        <span class="slider round"></span>
+      </label>
+    </div>
+    <div class="image-container">
+      <a href="http://localhost:8501" class="btn btn-secondary back-to-chatbot">Back</a>
+      <img src="./quiz_image.png" alt="Description of the image" class="header-img">
+    </div>
+    <div class="quiz-container">
+      <div class="row">
+        <div class="col-12">
+            <h1>AI Quiz Generator</h1>
+            <hr />
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-10 offset-md-1">
+            <div class="form-inline">
+                <div class="form-group mb-2">
+                  <input type="number" class="form-control" id="numQuestions" placeholder="Number of Questions">
+                </div>
+                <div class="form-group mx-sm-2 mb-2">
+                  <input type="number" class="form-control" id="numOptions" placeholder="Number of Options">
+                </div>
+                <div class="form-group mx-sm-2 mb-2">
+                  <input type="text" class="form-control" id="subject" placeholder="Subject here">
+                </div>
+                <button type="submit" class="btn btn-primary mb-2" onclick="generateQuiz()">Generate Quiz</button>
+                <button type="submit" class="btn btn-danger mb-2" onclick="reloadPage()">Restart</button>
+              </div>
+              <hr />
+        </div>
+      </div>
+      <div id="quiz-container"></div>
+    </div>
+  </div>
+  <script>
+
+    /* GLOBAL VARIABLES */
+    /* **************************************************
+    ************************************************** */
+    const loadingSvg = createLoadingSvg();
+
+    /* UTILS FUNCTIONS */
+    /* **************************************************
+    ************************************************** */
+
+    // Validate if JSON returned from api matches the template
+    function validateJSON(jsonData, jsonTemplate) {
+      for (const key in jsonTemplate) {
+        if (!jsonData.hasOwnProperty(key)) {
+          return false; // Key does not exist in the JSON data
+        }
+
+        if (typeof jsonData[key] !== typeof jsonTemplate[key]) {
+          return false; // Type mismatch for the key
+        }
+
+        if (typeof jsonData[key] === 'object' && !Array.isArray(jsonData[key])) {
+          if (!validateJSON(jsonData[key], jsonTemplate[key])) {
+            return false; // Recursive call for nested objects
+          }
+        }
+      }
+
+      return true; // JSON matches the template structure
+    }
+
+    // force page reload
+    function reloadPage() {
+      location.reload(true)
+    }
+
+    // create an HTML element and add css classes
+    function createEl (elType, className) {
+        const el = document.createElement(elType)
+        if (className) {
+            classes = className.split(" ")
+            classes.forEach(className => {
+                el.classList.add(className)
+            })
+        }
+
+        return el
+    }
+
+    function isInt(value) {
+      return typeof value === 'number' && Number.isInteger(value)
+    }
+
+    function isString(value) {
+      return typeof value === 'string' && value.length > 1;
+    }
+
+    function isChar(value) {
+      return typeof value === 'string' && value.length === 1;
+    }
+
+    // set value to myQuiz key in localStorage
+    function setQuiz(myQuiz) {
+      localStorage.setItem('myQuiz', JSON.stringify(myQuiz));
+    }
+
+    // get value of myQuiz key from localStorage
+    function getQuiz() {
+      return JSON.parse(localStorage.getItem('myQuiz'));
+    }
+
+    function createLoadingSvg() {
+        // Create the SVG element
+        const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+        svg.setAttribute("xmlns", "http://www.w3.org/2000/svg");
+        svg.setAttribute("xmlns:xlink", "http://www.w3.org/1999/xlink");
+        svg.setAttribute("style", "margin: auto; background: #fff; display: block;");
+        svg.setAttribute("width", "250px");
+        svg.setAttribute("height", "100px");
+        svg.setAttribute("viewBox", "0 0 100 100");
+        svg.setAttribute("preserveAspectRatio", "xMidYMid");
+
+        // Create the robot body
+        const robotBody = document.createElementNS("http://www.w3.org/2000/svg", "rect");
+        robotBody.setAttribute("x", "33");
+        robotBody.setAttribute("y", "45");
+        robotBody.setAttribute("width", "34");
+        robotBody.setAttribute("height", "34");
+        robotBody.setAttribute("fill", "#1e87f0");
+
+        // Create the robot head
+        const robotHead = document.createElementNS("http://www.w3.org/2000/svg", "rect");
+        robotHead.setAttribute("x", "40");
+        robotHead.setAttribute("y", "26");
+        robotHead.setAttribute("width", "20");
+        robotHead.setAttribute("height", "20");
+        robotHead.setAttribute("fill", "#1e87f0");
+
+        // Create the first eye
+        const eye1 = document.createElementNS("http://www.w3.org/2000/svg", "circle");
+        eye1.setAttribute("cx", "45");
+        eye1.setAttribute("cy", "32");
+        eye1.setAttribute("r", "2");
+        eye1.setAttribute("fill", "#fff");
+
+        // Create the second eye
+        const eye2 = document.createElementNS("http://www.w3.org/2000/svg", "circle");
+        eye2.setAttribute("cx", "55");
+        eye2.setAttribute("cy", "32");
+        eye2.setAttribute("r", "2");
+        eye2.setAttribute("fill", "#fff");
+
+        // Create the animation for the robot's body
+        const animateBody = document.createElementNS("http://www.w3.org/2000/svg", "animate");
+        animateBody.setAttribute("attributeName", "fill-opacity");
+        animateBody.setAttribute("begin", "0s");
+        animateBody.setAttribute("dur", "1.2s");
+        animateBody.setAttribute("values", "1;.2;1");
+        animateBody.setAttribute("calcMode", "linear");
+        animateBody.setAttribute("repeatCount", "indefinite");
+
+        // Append the elements to the SVG element
+        svg.appendChild(robotBody);
+        svg.appendChild(robotHead);
+        svg.appendChild(eye1);
+        svg.appendChild(eye2);
+        svg.appendChild(animateBody);
+
+        // Create the text element
+        const text = document.createElementNS("http://www.w3.org/2000/svg", "text");
+        text.setAttribute("x", "50");
+        text.setAttribute("y", "95");
+        text.setAttribute("text-anchor", "middle");
+        text.setAttribute("fill", "#1e87f0");
+        text.setAttribute("id", "loading-text")
+
+        // Append the text element to the SVG element
+        svg.appendChild(text);
+
+        return svg
+    }
+
+    // renders a loading svg to the UI
+    function startLoading() {
+        const container = document.getElementById("quiz-container");
+        const loadingContainer = createEl("div");
+        loadingContainer.id = "loading";
+        loadingContainer.appendChild(loadingSvg);
+        container.appendChild(loadingContainer);
+    }
+
+    // remove the loading gif from the UI
+    function stopLoading() {
+      const el = document.getElementById("loading")
+      el.remove();
+    }
+
+    function updateLoadingText(text){
+        const loadingText = document.getElementById("loading-text");
+        loadingText.textContent = text
+    }
+
+    // renders a alert with an error message in the UI
+    function showError(err) {
+      const errDiv = createEl("div", "alert alert-danger")
+      errDiv.innerText = err
+
+      const quizContainer = document.getElementById("quiz-container");
+      quizContainer.appendChild(errDiv)
+    }
+
+    function showAllBadges() {
+      const quizContainer = document.getElementById("quiz");
+      const badges = quizContainer.getElementsByClassName("badge");
+      for (let i = 0; i < badges.length; i++) {
+        badges[i].style.display = "inline";
+      }
+    }
+
+    function updateResults(score) {
+        const quizData = getQuiz()
+        const totalOfQuestions = quizData.length
+        const resultContainer = document.getElementById("result");
+        resultContainer.textContent = "Your Score: " + score + "/" + totalOfQuestions;
+    }
+
+    function charToInt(char) {
+      const lowercaseChar = char.toLowerCase();
+      if (lowercaseChar >= 'a' && lowercaseChar <= 'z') {
+        return lowercaseChar.charCodeAt(0) - 'a'.charCodeAt(0) + 1;
+      } else {
+        return -1; // Return -1 for non-alphabetic characters
+      }
+    }
+
+    /* OPENAI STUFF */
+    /* **************************************************
+    ************************************************** */
+
+    const OPENAI_API_KEY = "Your API KEY here"
+    const OPENAI_URL = "https://api.openai.com/v1/chat/completions"
+    const OPENAI_MODEL = "gpt-3.5-turbo"
+    const OPENAI_IMAGE_URL = "https://api.openai.com/v1/images/generations"
+
+    // JSON structure expected to be returned from openai api
+    const jsonTemplate = {
+      questions: [
+        {
+          question: '',
+          options: [{
+              option: '',
+              isCorrect: ''
+          }],
+        }
+      ],
+    };
+
+    // return a payload to be used in openai api to generate a list of paragraphs for a content
+    const generateImageGenerationPayload = (prompt) => {
+      return {
+        "prompt": `${prompt}. Do not include any text in the image. Cartoon style`,
+        "n": 1,
+        "size": "256x256"
+      }
+    }
+
+    const completionPayload = (content) => {
+        return {
+            model: OPENAI_MODEL,
+            messages: [{
+                "role": "user",
+                content
+            }]
+        }
+    }
+
+    // return a payload to be used in openai api to return a prompt for image generation
+    const generateImgPromptPayload = (text) => {
+        content = `create an image generation prompt based on the text "${text}". write the answer as a json as {"prompt":""} where prompt describes the main subject of the text and limited by 20 words`
+        return completionPayload(content)
+    }
+
+    // return a payload to be used in openai api to generate a list of paragraphs for a content
+    const generateContentPayload = (numMaxParagraphs, subject) => {
+        content = `given the json template {"paragraphs": ['']} create a json explaining about ${subject}. This json must has up to ${numMaxParagraphs} paragraphs.`
+        return completionPayload(content)
+    }
+
+    // return a payload to be used in openai api to generate questions
+    const generateQuestionPayload = (numQuestions, numOptions, subject) => {
+        jsonTemplateToPrompt = JSON.stringify(jsonTemplate)
+        content = `create ${numQuestions} multiple choice questions with ${numOptions} options each asking about ${subject}. write the answer as a json as ${jsonTemplateToPrompt}`
+        return completionPayload(content)
+    }
+
+    const postApi = async (url, apiKey, data) => {
+        const response = await fetch(url, {
+          method: 'POST',
+          headers: {
+              'Content-Type': 'application/json',
+              'Authorization': `Bearer ${apiKey}`
+          },
+          body: JSON.stringify(data)
+      })
+
+      return await response.json()
+    }
+
+    // fetch Openai v1/chat/completions
+    const fetchChatCompletions = async (data) => await postApi(OPENAI_URL, OPENAI_API_KEY, data)
+
+    // fetch Openai v1/images/generations
+    const fetchImageGeneration = async (data) => await postApi(OPENAI_IMAGE_URL, OPENAI_API_KEY, data)
+
+    const parseImgUrl = (response) => {
+        return response.data[0].url
+    }
+
+    const parseImgPrompt = (response) => {
+        const data = JSON.parse(response.choices[0].message.content)
+        return data.prompt
+    }
+
+    const parseParagraphsToArray = (response) => {
+        const data = JSON.parse(response.choices[0].message.content)
+        return data.paragraphs
+    }
+
+    // extract and parse openai response
+    const parseQuestionResponseToJson = (response) => {
+      const quizData = JSON.parse(response.choices[0].message.content)
+
+      // log the value of the quiz for testing
+      console.log('QUIZ DATA', JSON.stringify(quizData))
+
+      if (validateJSON(quizData, jsonTemplate)) {
+        myQuiz = quizData.questions
+        return myQuiz
+      }
+
+      throw new Error("Question JSON response is not valid")
+    }
+
+    /* ELEMENT CREATION FUNCTIONS */
+    /* **************************************************
+    ************************************************** */
+
+    // creates the Footer with the Submit Quiz btn
+    function createSubmitQuizFooter() {
+      const rowDiv = createEl("div", "row")
+      const colDiv = createEl("div", "col-md-10 offset-md-1")
+      rowDiv.appendChild(colDiv)
+
+      btn = createEl("button", "btn btn-primary submit-quiz")
+      btn.textContent = "Submit Quiz"
+      btn.onclick = submitQuiz
+
+      colDiv.appendChild(btn)
+
+      return rowDiv
+    }
+
+    // creates the footer with the score results
+    function createResultsFooter() {
+      const rowDiv1 = createEl("div", "row")
+      const colDiv1 = createEl("div", "col-md-10 offset-md-1")
+      const hr = createEl("hr")
+      const rowDiv = createEl("div", "row")
+      const colDiv21 = createEl("div", "col-md-2")
+      const colDiv22 = createEl("div", "col-md-10")
+      const strong = createEl("strong")
+      const resultDiv = createEl("div")
+      resultDiv.id = "result"
+      const br = createEl("br")
+
+      rowDiv1.appendChild(colDiv1)
+      colDiv1.appendChild(hr)
+      colDiv1.appendChild(rowDiv)
+      rowDiv.appendChild(colDiv21)
+      colDiv21.appendChild(strong)
+      strong.textContent = "Results:"
+      rowDiv.appendChild(colDiv22)
+      colDiv22.appendChild(resultDiv)
+      rowDiv.appendChild(br)
+      rowDiv.appendChild(br)
+      rowDiv.appendChild(br)
+
+      return rowDiv1
+    }
+
+    // creates the question card header
+    const createCardHeader = (question, index) => {
+        const cardHeader = createEl("div", "card-header")
+        cardHeader.innerText = `${index + 1}. ${question.question}`
+        return cardHeader
+    }
+
+    // creates the question option element
+    const createOption = (option, optionIndex, questionIndex, isCorrectAnswer) => {
+        const optionLabel = document.createElement("label");
+
+        const optionInput = document.createElement("input");
+        optionInput.setAttribute("type", "radio");
+        optionInput.setAttribute("name", "question" + questionIndex);
+        optionInput.setAttribute("value", option);
+
+        optionLabel.appendChild(optionInput);
+        optionLabel.appendChild(document.createTextNode(" " + option));
+
+        if (isCorrectAnswer) {
+          badge = createEl("span", "badge badge-success")
+          badge.textContent = "Correct"
+          badge.style.display = "none";
+          optionLabel.appendChild(badge);
+        }
+
+        return optionLabel
+    }
+
+    // create the question card with the header and options
+    const createQuestionCard = (question, index) => {
+        const cardDiv = createEl("div", "card question")
+        const cardHeader = createCardHeader(question, index)
+        cardDiv.appendChild(cardHeader)
+
+        listGroup = createEl("ul", "list-group list-group-flush")
+
+        question.options.forEach((option, optionIndex) => {
+            const listGroupItem = createEl("li", "list-group-item")
+            listGroup.appendChild(listGroupItem)
+
+            const isCorrectAnswer = JSON.parse(option.isCorrect)
+            optionLabel = createOption(option.option, optionIndex, index, isCorrectAnswer)
+            listGroupItem.appendChild(optionLabel)
+        })
+
+        cardDiv.appendChild(listGroup)
+
+        return cardDiv
+    }
+
+    const createParagraph = (paragraph, imageUrl) => {
+        const rowDiv = createEl("div", "row")
+        const colDiv = createEl("div", "col-md-10 offset-md-1")
+        rowDiv.appendChild(colDiv)
+
+       // Create the container element
+        const container = document.createElement("div");
+        container.style.display = "flex";
+        container.style.alignItems = "center";
+        container.style.justifyContent = "flex-end";
+
+        // Create the <p> element
+        const paragraphEl = document.createElement("p");
+        paragraphEl.textContent = paragraph;
+
+        // Create the <img> element
+        const image = document.createElement("img");
+        image.src = imageUrl;
+        image.style.marginLeft = "10px"; // Add some spacing between the paragraph and the image
+
+        // Append the elements to the container
+        container.appendChild(paragraphEl);
+        container.appendChild(image);
+
+        colDiv.appendChild(container)
+
+        return rowDiv
+    }
+
+    /* RENDERING FUNCTIONS */
+    /* **************************************************
+    ************************************************** */
+
+    // Function to render the quiz with all questions
+    function renderQuiz(quizData, paragraphsElements) {
+      const quizContainer = document.getElementById("quiz-container");
+      const rowDiv = createEl("div", "row")
+      const colDiv = createEl("div", "col-md-10 offset-md-1")
+      rowDiv.appendChild(colDiv)
+      const quiz = createEl("div")
+      quiz.id = "quiz"
+      colDiv.appendChild(quiz)
+
+      for (let i=0; i < paragraphsElements.length; i++){
+        quizContainer.appendChild(paragraphsElements[i])
+      }
+
+      quizContainer.appendChild(rowDiv)
+      const submitQuizDiv = createSubmitQuizFooter()
+      const resultsDiv = createResultsFooter()
+      quizContainer.appendChild(submitQuizDiv)
+      quizContainer.appendChild(resultsDiv)
+
+      quizData.forEach((question, index) => {
+        const questionDiv = createQuestionCard(question, index)
+        quiz.appendChild(questionDiv);
+      });
+    }
+
+    /* BEHAVIOUR FUNCTIONS */
+    /* **************************************************
+    ************************************************** */
+
+    // generate the quiz based on the prompts defined by the user
+    const generateQuiz = async () => {
+        const numQuestions = document.getElementById("numQuestions").value;
+        const numOptions = document.getElementById("numOptions").value
+        const subject = document.getElementById("subject").value;
+
+        if (numQuestions > 0 && numOptions > 1 && subject){
+
+            startLoading()
+
+            try {
+
+                // Fetch list of paragraps for the content
+                updateLoadingText("Creating Paragraphs...")
+                contentParagraphsData = generateContentPayload(2, subject)
+                contentParagraphsResponse = await fetchChatCompletions(contentParagraphsData)
+                paragraphs = parseParagraphsToArray(contentParagraphsResponse)
+
+                paragraphsElements = []
+                updateLoadingText("Creating Images...")
+                for(const paragraph of paragraphs){
+                    // Fetch the image prompt
+                    imgPromptData = generateImgPromptPayload(paragraph)
+                    imgPromptResponse = await fetchChatCompletions(imgPromptData)
+                    imgPrompt = parseImgPrompt(imgPromptResponse)
+                    // log prompt for test
+                    console.log("Img prompt", imgPrompt)
+
+                    // Fetch the image url
+                    imgUrlData = generateImageGenerationPayload(imgPrompt)
+                    imgUrlResponse = await fetchImageGeneration(imgUrlData)
+                    imgUrl = parseImgUrl(imgUrlResponse)
+
+                    paragraphsElements.push(createParagraph(paragraph, imgUrl))
+                }
+
+                updateLoadingText("Creating Questions...")
+                const questionsData = generateQuestionPayload(numQuestions, numOptions, subject)
+                const questionsResponse = await fetchChatCompletions(questionsData)
+                const myQuiz = parseQuestionResponseToJson(questionsResponse)
+                setQuiz(myQuiz)
+                renderQuiz(myQuiz, paragraphsElements)
+
+            } catch (error) {
+                showError(error)
+            }
+
+            stopLoading()
+        } else {
+            showError("All fields are required. Number of Options need to be higher than 1.")
+        }
+    }
+
+    // get the correct answer list for a question based on its index
+    function getCorrectAnswers(questionIndex) {
+        const quizData = getQuiz()
+        return quizData[questionIndex].options
+            .filter(opt => JSON.parse(opt.isCorrect))
+            .map(opt => opt.option);
+    }
+
+    // Check if the checked option in options is correct
+    function isRadioOptionCorrect(options, questionIndex){
+        const correctAnswers = getCorrectAnswers(questionIndex)
+        for (let j = 0; j < options.length; j++) {
+          if (options[j].checked) {
+            if (correctAnswers.includes(options[j].value))
+                return true
+          }
+        }
+        return false
+    }
+
+    // Function to submit the quiz and calculate the score
+    function submitQuiz() {
+      let score = 0;
+      const quizContainer = document.getElementById("quiz");
+      const questionDivs = quizContainer.getElementsByClassName("question");
+      for (let i = 0; i < questionDivs.length; i++) {
+        const options = questionDivs[i].querySelectorAll("input[type=radio]");
+        if (isRadioOptionCorrect(options, i))
+            score++;
+      }
+
+      updateResults(score)
+      showAllBadges()
+    }
+
+    // Toggle between light and dark mode
+    const toggleMode = document.getElementById('toggle-mode');
+    toggleMode.addEventListener('change', () => {
+      document.body.classList.toggle('dark-mode');
+    });
+
+  </script>
+</body>
+</html>
