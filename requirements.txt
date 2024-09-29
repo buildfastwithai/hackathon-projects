@@ -1,0 +1,6 @@
+asgiref==3.8.1 ; 
+django==5.1.1 ; 
+sqlparse==0.5.1 ; 
+tzdata==2024.2 ; 
+google-generativeai == 0.8.2;
+gunicorn==23.0.0

@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Search Results</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: linear-gradient(135deg, #89fffd, #ef32d9);
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start; /* Adjusted for variable content height */
+      min-height: 100vh;
+    }
+
+    .container {
+      text-align: center;
+      background: white;
+      padding: 50px;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      max-width: 800px;
+      margin: 40px auto;
+    }
+
+    h1 {
+      margin-bottom: 30px;
+      font-size: 36px;
+      color: #333;
+    }
+
+    ul {
+      list-style-type: none;
+      padding: 0;
+    }
+
+    li {
+      background: #f9f9f9;
+      margin: 10px 0;
+      padding: 15px;
+      border-radius: 8px;
+      font-size: 18px;
+      text-align: left;
+      color: #555;
+    }
+
+    .no-results {
+      font-size: 20px;
+      color: #888;
+    }
+
+    .back-button {
+      background-color: #ff4081;
+      color: white;
+      padding: 12px 25px;
+      border: none;
+      border-radius: 25px;
+      cursor: pointer;
+      font-size: 16px;
+      margin-top: 30px;
+      text-decoration: none;
+      display: inline-block;
+      transition: background-color 0.3s ease;
+    }
+
+    .back-button:hover {
+      background-color: #f50057;
+    }
+    
+    /* Add a fixed position for your name in the top-left corner */
+    .top-left-name {
+      position: absolute;
+      top: 10px;
+      left: 20px;
+      font-size: 35px;
+      color: white;
+      font-weight: bold;
+    }
+
+    /* Home button in top-right corner */
+    .home-button {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      background-color: #4caf50;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 20px;
+      cursor: pointer;
+      font-size: 16px;
+      text-decoration: none;
+      transition: background-color 0.3s ease;
+    }
+
+    .home-button:hover {
+      background-color: #388e3c;
+    }
+
+
+    .next-button {
+      background-color: #ff4081;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 25px;
+      cursor: pointer;
+      font-size: 16px;
+      transition: background-color 0.3s ease;
+      margin-top: 20px;
+    }
+
+    .next-button:hover {
+      background-color: #f50057;
+    }
+  </style>
+</head>
+<body>
+  <div class="top-left-name">
+    <a href="https://www.linkedin.com/in/rounak-gera-229a46287/">@Rounak Gera</a>
+    <a href = "https://buildfastwithai.com/">Buildfastwithai</a>
+  </div>
+
+
+  <!-- Home button -->
+  <a href="{% url 'home' %}" class="home-button">Home</a>
+
+  <div class="container">
+    <h1>Quiz</h1>
+    
+    <ul>
+      {% for result in results %}
+        <li>{{result | safe}}</li>
+      {% empty %}
+        <li class="no-results">No results found.</li>
+      {% endfor %}
+    </ul>
+
+    <!-- <a href="" class="back-button">Back to Search</a> -->
+  </div>
+  
+</body>
+</html>
