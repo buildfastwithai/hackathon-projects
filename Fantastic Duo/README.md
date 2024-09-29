@@ -51,7 +51,11 @@ Fantastic Duo/
    ```
 2. **Environment Setup**:  
    Create an `.env` file with the following keys:
-   - `MONGO_URI`: Your MongoDB Atlas connection string.
+   - `MONGO_URI`: Your MongoDB Atlas connection string. The MONGO_URI, for e.g ( mongodb+srv://ashishsah11110112:<db_password>@userauthcluster.fvhu1.mongodb.net/<db_name>) 
+   - Then, under the mongodb database <db_name> : You'll have to create two collections
+   -  i) users
+   -  ii) quizzes
+
    - `OPENAI_API_KEY`: Generate this from [Google AI Studio](https://ai.google.dev/aistudio).
    - `SECRET_KEY`: A custom secret key for session management (e.g., `mysecretkey123`).
 
