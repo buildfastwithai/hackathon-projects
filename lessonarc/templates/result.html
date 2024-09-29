@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generated Course Material</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Generated Course Material for "{{ topic }}"</h1>
+        <div class="result-section">
+            {% for text in content %}
+                <div class="variation">
+                    <h2>Variation {{ loop.index }}:</h2>
+                    <p>{{ text }}</p>
+                </div>
+            {% endfor %}
+        </div>
+        
+        {% if image_url %}
+        <h2>Related Image:</h2>
+        <img src="{{ image_url }}" alt="Related to {{ topic }}" class="result-image">
+        {% endif %}
+        
+        <div class="quiz">
+            <h2>Quiz:</h2>
+            <p>{{ quiz }}</p>
+        </div>
+        
+        <div class="assignment">
+            <h2>Assignment:</h2>
+            <p>{{ assignment }}</p>
+        </div>
+        
+        <a href="/"><button>Generate More</button></a>
+    </div>
+</body>
+</html>

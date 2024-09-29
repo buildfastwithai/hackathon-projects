@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Course Material Generator</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Generate Course Material</h1>
+        <form action="/generate" method="post">
+            <label for="topic">Course Topic:</label>
+            <input type="text" id="topic" name="topic" required>
+
+            <label for="level">Difficulty Level:</label>
+            <input type="text" id="level" name="level" required>
+
+            <label for="max_length">Maximum Tokens:</label>
+            <input type="number" id="max_length" name="max_length" value="200" required>
+
+            <label for="temperature">Creativity (Temperature):</label>
+            <input type="number" id="temperature" name="temperature" step="0.1" value="0.7" required>
+
+            <label for="num_return_sequences">Number of Variations:</label>
+            <input type="number" id="num_return_sequences" name="num_return_sequences" value="1" required>
+
+            <button type="submit">Generate Course Material</button>
+        </form>
+    </div>
+</body>
+</html>
