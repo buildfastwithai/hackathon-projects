@@ -1,0 +1,71 @@
+/* Container for the entire landing section */
+.landing-section {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #fff; /* Text color */
+  text-align: center;
+  position: relative;
+}
+
+/* Adding the portal animation effect */
+.portal-effect {
+  background-image: url(back1.gif);
+  width: 350px;
+  height: 350px;
+  border-radius: 50%;
+  position: absolute;
+  z-index: -1;
+  animation: pulse 2s infinite ease-in-out;
+}
+
+/* Pulsing effect for the portal */
+@keyframes pulse {
+  0% {
+    transform: scale(0.95);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.1);
+    opacity: 0.8;
+  }
+  100% {
+    transform: scale(0.95);
+    opacity: 1;
+  }
+}
+
+/* Button styling */
+.button {
+  background-color: #ba4949; /* Button color */
+  color: white;
+  padding: 10px 30px;
+  font-size: 18px;
+  border: none;
+  border-radius: 25px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.begin {
+  text-decoration: none;
+  color: white;
+}
+
+.button:hover {
+  background-color: #b37ee7; /* Hover effect */
+}
+
+/* Styling for text (title and subtitle) */
+.landing-title {
+  font-size: 3rem;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.landing-subtitle {
+  font-size: 1.5rem;
+  font-style: italic;
+  margin-bottom: 30px;
+}
