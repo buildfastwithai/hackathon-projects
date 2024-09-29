@@ -1,38 +1,43 @@
-AI Student Hackathon - Project Submission
+# LearnallAI : A step toward Customised AI
 
-Welcome to the submission day of our AI Student Hackathon! 🚀
+This is my submission for @buildfastwithai[https://buildfastwithai.com/] hackathon
+Provides:-
+- Customised explanation
+- Roadmap for future growth
+- Quiz to test level of knowledge
 
-We’re thrilled to have you participate and can't wait to see your innovative AI apps. Please follow the instructions below to submit your project for evaluation.
+## Description
+A app to help students learn new concepts according to their level of understanding and also to help student understand notes with the help of AI according to their level of understanding and comprehension.
+- Educhain for Quiz generation
+- Django for website making
+- Gemini API for integration with AI
+- Render for deploying
 
-Submission Details
-
-Submit the following information via the provided Google Form for us to access your AI applications:
-
-Team Name: Your team's unique name.
-
-App Name: The name of your AI application.
-
-App Description: A brief overview of what your app does and its core features.
-
-GitHub PR Link: The link to your Pull Request (PR) in the project repository.
-
-App Link: A link to the deployed version of your app.
-
-Loom Video: A demo video link showing your app in action.
+Right now i have not integrated many featuress but will do it shortly like:
+-Good formatting
+-user authentication 
+-chat storage system
+-postgres database 
+-also i will make a custom finetuned model for this task
 
 
-For detailed submission guidelines, please refer to the last doubt session recording: https://www.buildfastwithai.com/hackathon.
+##STEPS TO USE
+1. Go to website
+   ![image](https://github.com/user-attachments/assets/e2b1bd2e-3bf3-42e5-ad25-bc11161a4c87)
 
-Important Links:
+2. Enter the topicyou want to learn like deep learning and SUBMIT
+   - if you are complete beginner then mark the checkbox 
+   ![image](https://github.com/user-attachments/assets/4febbaba-debb-4f89-9e90-8e588ea4ef61)
 
-Google Form for Submission :- https://forms.gle/JVXGjYhxtdAhTGgm6
+4. Answer the questions upto your knowledge  and click NEXT
+   ![image](https://github.com/user-attachments/assets/24a77bad-e4fd-4377-906a-ccaafdbfd233)
 
-GitHub Project Submission Link :- https://shorturl.at/zgs3m
+5. Here you have your custom explanation
+   - SORRY RIGHT NOW THE FORMATTING IS A LITTLE UGLY BUT WILL IMPROVE
+   ![image](https://github.com/user-attachments/assets/85304bfb-1809-44ee-9ec1-6513a4501c9b)
 
-Deadline
-⏰ Submission Deadline: Tonight, 11:59 PM. Make sure all components are submitted on time to ensure your project is evaluated.
+You can use it for explaining documents in a similar way
 
-Good luck, and we look forward to reviewing your amazing projects!
----
-Hackathon Organizers
-Build Fast with AI
+Thank you and i welcome any sort of suggestions
+and also i thank to build fast with ai for making me do such a thing 
+VISIT THEIR WEBSITE :- https://buildfastwithai.com/

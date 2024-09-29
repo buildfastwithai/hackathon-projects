@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Home Page</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: linear-gradient(135deg, #89fffd, #ef32d9);
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    /* Add a fixed position for your name in the top-left corner */
+    .top-left-name {
+      position: absolute;
+      top: 10px;
+      left: 20px;
+      font-size: 35px;
+      color: white;
+      font-weight: bold;
+    }
+
+    .container {
+      text-align: center;
+      background: white;
+      padding: 50px;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    h1 {
+      margin-bottom: 20px;
+      font-size: 36px;
+      color: #333;
+    }
+
+    .search-box {
+      position: relative;
+      width: 100%;
+      max-width: 500px;
+      margin: 0 auto 30px;
+    }
+
+    .search-box input {
+      width: 100%;
+      padding: 15px;
+      border-radius: 30px;
+      border: 2px solid #ddd;
+      font-size: 16px;
+      transition: border 0.3s ease;
+    }
+
+    .search-box input:focus {
+      border-color: #42a5f5;
+      outline: none;
+    }
+
+    .file-upload {
+      margin-bottom: 20px;
+    }
+    
+    /* Add a fixed position for your name in the top-right corner */
+    .top-right-name {
+      position: absolute;
+      top: 10px;
+      right: 20px; /* Changed from left to right */
+      font-size: 35px;
+      color: white;
+      font-weight: bold;
+    }
+
+    .next-button {
+      background-color: #ff4081;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 25px;
+      cursor: pointer;
+      font-size: 16px;
+      transition: background-color 0.3s ease;
+    }
+
+    .next-button:hover {
+      background-color: #f50057;
+    }
+  </style>
+</head>
+<body>
+  {% if popup %}
+    <script>
+      function myFunction() {
+        alert("either enter topic or PDF");
+      }
+      myFunction()
+    </script>
+  {% endif %}
+
+  <!-- Add your name at the top-left corner -->
+  <div class="top-left-name">
+    <a href="https://www.linkedin.com/in/rounak-gera-229a46287/">@Rounak Gera</a>
+    <a href="https://buildfastwithai.com/">Buildfastwithai</a>
+  </div>
+
+  <div class="top-right-name">
+    <a href="{% url 'test' %}">Test Your Knowledge</a>
+  </div>
+
+  <div class="container">
+    <h1>Enter the topic name :</h1>
+    
+    <div class="search-box">
+        <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <input type="text" name="search" placeholder="Type your query here..." >
+            <br><br>
+
+            <!-- File upload for PDF notes (optional) -->
+            <div class="file-upload">
+              <label for="file">Upload Your Notes (Optional, PDF only):</label>
+              <input type="file" id="file" name="file" accept="application/pdf">
+            </div>
+    </div>
+
+    <!-- Checkbox for beginner option -->
+    <input type="checkbox" name="beginner" value="true">
+    <label for="beginner">Complete beginner</label>
+    <br><br>
+
+    <!-- Submit button moved here -->
+    <button type="submit" class="next-button">&#128269; Submit</button>
+
+    </form>
+  </div>
+
+</body>
+</html>
