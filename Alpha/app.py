@@ -15,8 +15,7 @@ model = AutoModelForSeq2SeqLM.from_pretrained("facebook/bart-large-cnn")
 # Initialize Educhain client
 gemini = ChatGoogleGenerativeAI(
     model="gemini-1.5-pro-002",
-    api_key="AIzaSyDPvXj9Tfn6wZ6w9qGfq5XNjOlOiz_qxlc"  # Make sure to put your API key here
-)
+    api_key="Enter Your API key" 
 
 gemini_config = LLMConfig(custom_model=gemini)
 client = Educhain(gemini_config)
@@ -118,7 +117,7 @@ def submit_quiz():
     for idx, correct_answer in enumerate(correct_answers):
         user_answer = request.form.get(f'q{idx+1}') # This will now be the option string the user selected
         print(f"User answer for Q{idx + 1}: {user_answer}")  # Debugging line to check user answers
-        print(f"Correct answer for Q{idx + 1}: {correct_answer}")  # Debugging line to check correct answers
+        print(f"Correct answer for Q{idx + 1}: {correct_answer}")
         if user_answer and user_answer == correct_answer:
             score += 1
             feedback.append(f"Question {idx + 1}: Correct!!! {correct_answer}.")
