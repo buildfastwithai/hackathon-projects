@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz Results</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-image: url('{{ url_for('static', filename='bgm.png') }}');
+            background-color: rgba(255, 255, 255, 0.5);
+            background-blend-mode: overlay;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            background-color: white;
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            max-width: 900px;
+            width: 100%;
+            text-align: center;
+        }
+        h1 {
+            color: #333;
+            margin-bottom: 1rem;
+        }
+        .score {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 170px;
+            height: 170px;
+            border-radius: 50%;
+            background-color: #4CAF50;
+            color: white;
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin: 1rem auto 2rem auto;
+        }
+        .score p {
+            margin: 0;
+        }
+        .feedback {
+            background-color: #f0f0f0;
+            border-radius: 10px;
+            padding: 1rem;
+            margin-top: 2rem;
+            position: relative;
+        }
+        .feedback::after {
+            content: '↓';
+            position: absolute;
+            bottom: -30px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 2rem;
+            color: #333;
+            animation: bounce 1s infinite ease-in-out; /* Continuous bouncing animation */
+        }
+        @keyframes bounce {
+            0%, 100% {
+                transform: translateX(-50%) translateY(0); /* Arrow in original position */
+            }
+            50% {
+                transform: translateX(-50%) translateY(-10px); /* Arrow moves up */
+            }
+        }
+        ul {
+            padding-left: 20px;
+            text-align: left;
+        }
+        li {
+            margin-bottom: 0.5rem;
+        }
+        .btn {
+            display: block;
+            width: 100%;
+            padding: 1rem;
+            background-color: #007bff;
+            color: white;
+            text-align: center;
+            text-decoration: none;
+            border-radius: 5px;
+            margin-top: 2rem;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+        .btn:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Quiz Results</h1> <!-- Title inside the white box -->
+        <div class="score">
+            <p>Your Score: {{ score }}/{{ total }}</p> <!-- Score inside the green circle -->
+        </div>
+        <div class="feedback">
+            <h3>Feedback</h3>
+            <ul>
+                {% for comment in feedback %}
+                <li>{{ comment }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+        <a href="/" class="btn">Take Quiz Again</a> <!-- Button remains as it is -->
+    </div>
+</body>
+</html>

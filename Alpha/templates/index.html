@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title style="font-size: 100px;">MindYourStudy</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.2;
+            margin: 0;
+            padding: 0;
+            background-image: url('{{ url_for('static', filename='bgm.png') }}');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            position: relative;
+        }
+        h1 {
+            font-family: 'Georgia', serif; /* Different font for the heading */
+        }
+        body::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(255, 255, 255, 0); /* Faded overlay */
+            z-index: -1;
+        }
+        
+        .container {
+            width: 80%;
+            margin: auto;
+            overflow: hidden;
+            padding: 20px;
+            position: relative;
+        }
+        header {
+            background: #3490a9;
+            color: white;
+            padding-top: 10px;
+            min-height: 50px;
+            text-align: center;
+        }
+        header img {
+            width: 200px;
+            height: auto;
+        }
+        .about {
+            padding: 10px;
+            background: rgba(255, 255, 255, 0.6);
+            margin-top: 20px;
+            border-radius: 5px;
+        }
+        .upload-form {
+            background: rgba(255, 255, 255, 0.6); /* More transparent background */
+            padding: 10px;
+            margin-top: 10px;
+            border-radius: 5px;
+        }
+        input[type="text"] {
+            width: 70%;
+            padding: 10px;
+            margin-right: 10px;
+            background: rgba(255, 255, 255, 0); /* More transparent background */
+        }
+        input[type="submit"] {
+            padding: 10px 20px;
+            background: #50b3a2;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <img src="{{ url_for('static', filename='LOGO.png') }}" alt="MindYouStudy Logo" style="width: 110px; height: auto;">
+            <h1>MindYourStudy</h1>
+        </div>
+    </header>
+
+    <div class="container">
+        <section class="about">
+            <h2>About MindYourStudy</h2>
+            <p>MindYourStudy is an innovative application designed to enhance your learning experience. Upload your PDF documents and let our advanced AI summarize and quiz you on the content, making your study sessions more efficient and effective.</p>
+        </section>
+        
+        <section class="upload-form" >
+            <h2>Upload Your PDF</h2>
+            <form method="POST" action="/">
+                <label for="pdf_url">Enter PDF URL:</label>
+                <input type="text" id="pdf_url" name="pdf_url" required>
+                <button type="submit">Submit</button>
+            </form>
+        </section>
+    </div>    
+</body>
+</html>

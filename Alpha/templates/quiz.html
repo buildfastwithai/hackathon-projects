@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Quiz</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            background-image: url('{{ url_for('static', filename='Questionmark.jpg') }}');
+            background-color: rgba(255, 255, 255, 0.5); /* Faded overlay */
+            justify-content: space-between; /* Align children with space in-between */
+            padding: 20px;
+        }
+
+        #summary {
+            width: 30%; /* Width of the sidebar */
+            background-color: #f4f4f4; /* Light gray background for the summary section */
+            padding: 15px; /* Padding inside the summary section */
+            border: 1px solid #ccc; /* Border for the summary section */
+            margin-right: 20px; /* Space between the summary and quiz */
+            border-radius: 8px; /* Rounded corners */
+        }
+        .typing-cursor {
+            display: inline-block;
+            width: 3px;
+            background-color: #333;
+            animation: blink 0.7s infinite;
+        }
+
+        @keyframes blink {
+            0% { opacity: 1; }
+            50% { opacity: 0; }
+            100% { opacity: 1; }
+        }
+
+        #quiz {
+            width: 65%; /* Width of the quiz section */
+        }
+
+        h1, h2, h3 {
+            color: #333; /* Dark color for headings */
+        }
+        
+        .cloud-button {
+            background-color: #4A90E2;
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            font-size: 18px;
+            cursor: pointer;
+            border-radius: 30px;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .cloud-button:before,
+        .cloud-button:after {
+            content: '';
+            position: absolute;
+            background-color: white;
+            border-radius: 50%;
+            transition: all 0.3s ease;
+        }
+
+        .cloud-button:before {
+            width: 20px;
+            height: 20px;
+            top: -10px;
+            left: 5px;
+        }
+
+        .cloud-button:after {
+            width: 30px;
+            height: 30px;
+            top: -15px;
+            right: 5px;
+        }
+
+        .cloud-button:hover {
+            background-color: #3A80D2;
+            transform: translateY(-3px);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .cloud-button:hover:before {
+            transform: scale(1.2) translateY(3px);
+        }
+
+        .cloud-button:hover:after {
+            transform: scale(1.2) translateY(3px);
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-5px); }
+        }
+
+        .cloud-button:hover {
+            animation: float 2s ease-in-out infinite;
+        }
+    </style>
+</head>
+<body>
+    <div id="summary">
+        <h2>Summary</h2>
+        {% if summary %}
+            <p>{{ summary }}</p>
+        {% else %}
+            <p>No summary available.</p>
+        {% endif %}
+        <span class="typing-cursor"></span>
+    </div>
+
+     
+
+    <div id="quiz">
+        <h1>Quiz</h1>
+        <form method="POST" action="/submit_quiz">
+            {% for question in questions %}
+                <h3>Question {{ loop.index }}: {{ question }}</h3>
+                
+                <label>
+                    <input type="radio" name="q{{ loop.index }}" value="{{ options[loop.index0][0] }}">
+                    {{ options[loop.index0][0] }}
+                </label><br>
+            
+                <label>
+                    <input type="radio" name="q{{ loop.index }}" value="{{ options[loop.index0][1] }}">
+                    {{ options[loop.index0][1] }}
+                </label><br>
+            
+                <label>
+                    <input type="radio" name="q{{ loop.index }}" value="{{ options[loop.index0][2] }}">
+                    {{ options[loop.index0][2] }}
+                </label><br>
+            
+                <label>
+                    <input type="radio" name="q{{ loop.index }}" value="{{ options[loop.index0][3] }}">
+                    {{ options[loop.index0][3] }}
+                </label><br>
+            
+                <br>
+            {% endfor %}
+            
+            <button class="cloud-button">Submit Quiz</button>
+        </form>    
+    </div>
+</body>
+</html>
